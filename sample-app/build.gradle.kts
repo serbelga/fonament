@@ -1,17 +1,18 @@
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.jetbrains.kotlin.compose)
+    id("dev.sergiobelda.gradle.spotless")
 }
 
 android {
     namespace = "dev.sergiobelda.fonament"
-    compileSdk = 36
+    compileSdk = libs.versions.androidCompileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = "dev.sergiobelda.fonament"
-        minSdk = 24
-        targetSdk = 36
+        applicationId = "dev.sergiobelda.fonament.sample.app"
+        minSdk = libs.versions.androidMinSdk.get().toInt()
+        targetSdk = libs.versions.androidTargetSdk.get().toInt()
         versionCode = 1
         versionName = "1.0"
 
@@ -29,6 +30,11 @@ android {
     }
     kotlin {
         jvmToolchain(17)
+
+        // TODO: Remove
+        compilerOptions {
+            freeCompilerArgs.add("-Xcontext-parameters")
+        }
     }
     buildFeatures {
         compose = true
@@ -36,14 +42,19 @@ android {
 }
 
 dependencies {
+    implementation(projects.fonament)
+    implementation(projects.fonament.samples)
+    implementation(projects.fonamentDi.koin)
 
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.lifecycle.runtimeKtx)
 
     implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.graphics)
-    implementation(libs.androidx.compose.ui.tooling.preview)
-    implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.compose.ui.toolingPreview)
+
+    implementation(libs.jetbrains.kotlinx.collectionsImmutable)
 }

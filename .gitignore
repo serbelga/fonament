@@ -15,3 +15,7 @@
 local.properties
 /.gradle/
 /.idea/
+/.kotlin/
+/gradle/build-logic/.kotlin/
+/fonament-di/koin/build/
+/fonament/samples/build/
