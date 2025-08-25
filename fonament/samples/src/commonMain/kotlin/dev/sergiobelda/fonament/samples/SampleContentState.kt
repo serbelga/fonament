@@ -18,22 +18,62 @@ package dev.sergiobelda.fonament.samples
 
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.SheetState
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import dev.sergiobelda.fonament.ui.FonamentContentState
+import dev.sergiobelda.fonament.ui.FonamentEvent
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Stable
 data class SampleContentState(
     val lazyListState: LazyListState,
-) : FonamentContentState
+    val sheetState: SheetState,
+    val coroutineScope: CoroutineScope,
+) : FonamentContentState {
 
+    var showBottomSheet by mutableStateOf(false)
+        private set
+
+    override fun handleEvent(event: FonamentEvent) {
+        when (event) {
+            SampleEvent.OpenBottomSheet -> { showBottomSheet = true }
+
+            SampleEvent.DismissBottomSheet -> { showBottomSheet = false }
+
+            SampleEvent.CloseBottomSheet -> {
+                coroutineScope.launch {
+                    sheetState.hide()
+                }.invokeOnCompletion {
+                    if (!sheetState.isVisible) {
+                        showBottomSheet = false
+                    }
+                }
+            }
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun rememberSampleContentState(
     lazyListState: LazyListState = rememberLazyListState(),
+    sheetState: SheetState = rememberModalBottomSheetState(),
+    coroutineScope: CoroutineScope = rememberCoroutineScope(),
 ): SampleContentState =
     remember {
         SampleContentState(
             lazyListState = lazyListState,
+            sheetState = sheetState,
+            coroutineScope = coroutineScope,
         )
     }

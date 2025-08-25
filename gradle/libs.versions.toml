@@ -8,12 +8,14 @@ androidxLifecycle = "2.9.2"
 composeBom = "2025.08.00"
 composeMultiplatform = "1.8.2"
 coreKtx = "1.16.0"
+daggerHilt = "2.56.2"
 fonament = "0.0.1"
 jetbrainsLifecycle = "2.9.2"
 junit = "4.13.2"
 koinBom = "4.1.0"
 kotlin = "2.2.10"
 kotlinCollectionsImmutable = "0.4.0"
+ksp = "2.2.10-2.0.2"
 ktlint = "0.50.0"
 spotless = "7.2.1"
 
@@ -36,6 +38,9 @@ androidx-lifecycle-runtimeKtx = { group = "androidx.lifecycle", name = "lifecycl
 androidx-lifecycle-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel", version.ref = "androidxLifecycle" }
 androidx-lifecycle-viewmodelCompose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "androidxLifecycle" }
 
+google-dagger-hilt = { module = "com.google.dagger:hilt-android", version.ref = "daggerHilt" }
+google-dagger-hiltCompiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "daggerHilt" }
+
 jetbrains-androidx-lifecycle-viewmodelCompose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "jetbrainsLifecycle" }
 jetbrains-kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 jetbrains-kotlinx-collectionsImmutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version.ref = "kotlinCollectionsImmutable" }
@@ -51,6 +56,8 @@ spotless-gradlePlugin = { module = "com.diffplug.spotless:spotless-plugin-gradle
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
+google-dagger-hilt = { id = "com.google.dagger.hilt.android", version.ref = "daggerHilt" }
+google-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 jetbrains-compose-multiplatform = { id = "org.jetbrains.compose", version.ref = "composeMultiplatform" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 jetbrains-kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }

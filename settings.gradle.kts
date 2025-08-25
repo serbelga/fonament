@@ -26,6 +26,7 @@ include(":fonament")
 include(":fonament:samples")
 include(":fonament-di:koin")
 
-include(":sample-app")
+include(":demos:basic")
+include(":demos:koin")
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")

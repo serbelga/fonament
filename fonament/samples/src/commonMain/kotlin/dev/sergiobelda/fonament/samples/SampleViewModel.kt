@@ -18,6 +18,7 @@ package dev.sergiobelda.fonament.samples
 
 import dev.sergiobelda.fonament.ui.FonamentEvent
 import dev.sergiobelda.fonament.ui.FonamentViewModel
+import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toPersistentList
 
 private val sampleData = List(50) {
@@ -28,9 +29,13 @@ private val sampleData = List(50) {
     )
 }.toPersistentList()
 
-class SampleViewModel : FonamentViewModel<SampleUIState>(
+open class SampleViewModel(
+    list: ImmutableList<SampleItemModel> = sampleData,
+    counter: Int = 0,
+) : FonamentViewModel<SampleUIState>(
     initialUIState = SampleUIState(
-        list = sampleData,
+        list = list,
+        counter = counter,
     ),
 ) {
 
@@ -49,6 +54,27 @@ class SampleViewModel : FonamentViewModel<SampleUIState>(
                     )
                 }
             }
+
+            is SampleEvent.IncreaseCounter -> {
+                updateUIState {
+                    it.copy(
+                        counter = it.counter + 1,
+                    )
+                }
+            }
+
+            is SampleEvent.DecreaseCounter -> {
+                updateUIState {
+                    it.copy(
+                        counter = (it.counter - 1).coerceAtLeast(0),
+                    )
+                }
+            }
         }
     }
 }
+
+class SampleViewModelV2 : SampleViewModel(
+    list = sampleData.take(10).toPersistentList(),
+    counter = 100,
+)

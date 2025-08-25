@@ -22,4 +22,14 @@ sealed class SampleEvent : FonamentEvent {
     data class ItemChecked(
         val item: SampleItemModel,
     ) : SampleEvent()
+
+    data object IncreaseCounter : SampleEvent()
+
+    data object DecreaseCounter : SampleEvent()
+
+    data object OpenBottomSheet : SampleEvent()
+
+    data object CloseBottomSheet : SampleEvent()
+
+    data object DismissBottomSheet : SampleEvent()
 }

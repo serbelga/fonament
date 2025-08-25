@@ -28,4 +28,5 @@ data class SampleItemModel(
 
 data class SampleUIState(
     val list: ImmutableList<SampleItemModel> = persistentListOf(),
+    val counter: Int,
 ) : FonamentUIState

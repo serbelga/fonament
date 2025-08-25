@@ -14,16 +14,25 @@
  * limitations under the License.
  */
 
-package dev.sergiobelda.fonament.samples
+package dev.sergiobelda.fonament.demos.basic
 
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
 import androidx.lifecycle.viewmodel.compose.viewModel
+import dev.sergiobelda.fonament.samples.SampleScreen
+import dev.sergiobelda.fonament.samples.SampleViewModel
 
-@Preview
-@Composable
-fun SampleContentPreview() {
-    SampleScreen.Content(
-        viewModel = viewModel<SampleViewModel>(),
-    )
+class BasicActivity : ComponentActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContent {
+            SampleScreen.Content(
+                viewModel = viewModel<SampleViewModel>(),
+            )
+        }
+    }
 }
