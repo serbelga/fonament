@@ -22,14 +22,14 @@ import dev.sergiobelda.fonament.ui.FonamentUIState
 import dev.sergiobelda.fonament.ui.FonamentViewModel
 
 @Composable
-fun <U> FonamentUI<U, *>.NavigationNodeContent(
+inline fun <reified N, U> FonamentUI<U, *>.ContentNavigationNode(
+    navigationEventHandler: FonamentNavigationEventHandler<N> = FonamentNavigationEventHandler { },
     viewModel: FonamentViewModel<U>,
-    navigationEventHandler: FonamentNavigationEventHandler = FonamentNavigationEventHandler { },
-) where U : FonamentUIState {
+) where N : FonamentNavigationEvent, U : FonamentUIState {
     Content(
         viewModel = viewModel,
         onEvent = {
-            if (it is FonamentNavigationEvent) {
+            if (it is N) {
                 navigationEventHandler.handleNavigationEvent(it)
             }
         },

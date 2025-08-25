@@ -16,7 +16,7 @@
 
 package dev.sergiobelda.fonament.navigation
 
-fun interface FonamentNavigationEventHandler {
+fun interface FonamentNavigationEventHandler<N : FonamentNavigationEvent> {
 
-    fun handleNavigationEvent(event: FonamentNavigationEvent)
+    fun handleNavigationEvent(event: N)
 }

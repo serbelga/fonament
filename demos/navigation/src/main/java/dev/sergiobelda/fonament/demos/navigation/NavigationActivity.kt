@@ -30,7 +30,7 @@ import dev.sergiobelda.fonament.demos.navigation.details.detailsNavigationEventH
 import dev.sergiobelda.fonament.demos.navigation.home.HomeScreen
 import dev.sergiobelda.fonament.demos.navigation.home.HomeViewModel
 import dev.sergiobelda.fonament.demos.navigation.home.homeNavigationEventHandler
-import dev.sergiobelda.fonament.navigation.NavigationNodeContent
+import dev.sergiobelda.fonament.navigation.ContentNavigationNode
 
 class NavigationActivity : ComponentActivity() {
 
@@ -44,23 +44,23 @@ class NavigationActivity : ComponentActivity() {
                 startDestination = HomeScreen,
             ) {
                 composable<HomeScreen> {
-                    HomeScreen.NavigationNodeContent(
-                        viewModel = viewModel<HomeViewModel>(),
+                    HomeScreen.ContentNavigationNode(
                         navigationEventHandler = homeNavigationEventHandler(
                             navigateToDetails = {
                                 navController.navigate(DetailsScreen)
                             },
                         ),
+                        viewModel = viewModel<HomeViewModel>(),
                     )
                 }
                 composable<DetailsScreen> {
-                    DetailsScreen.NavigationNodeContent(
-                        viewModel = viewModel<DetailsViewModel>(),
+                    DetailsScreen.ContentNavigationNode(
                         navigationEventHandler = detailsNavigationEventHandler(
                             navigateBack = {
                                 navController.navigateUp()
                             },
                         ),
+                        viewModel = viewModel<DetailsViewModel>(),
                     )
                 }
             }

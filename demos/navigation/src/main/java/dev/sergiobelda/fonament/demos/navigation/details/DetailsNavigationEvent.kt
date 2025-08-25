@@ -16,6 +16,7 @@
 
 package dev.sergiobelda.fonament.demos.navigation.details
 
+import dev.sergiobelda.fonament.demos.navigation.details.DetailsNavigationEvent.NavigateBack
 import dev.sergiobelda.fonament.navigation.FonamentNavigationEvent
 import dev.sergiobelda.fonament.navigation.FonamentNavigationEventHandler
 
@@ -26,8 +27,8 @@ sealed interface DetailsNavigationEvent : FonamentNavigationEvent {
 
 fun detailsNavigationEventHandler(
     navigateBack: () -> Unit,
-) = FonamentNavigationEventHandler {
+) = FonamentNavigationEventHandler<DetailsNavigationEvent> {
     when (it) {
-        is DetailsNavigationEvent.NavigateBack -> navigateBack.invoke()
+        NavigateBack -> navigateBack.invoke()
     }
 }

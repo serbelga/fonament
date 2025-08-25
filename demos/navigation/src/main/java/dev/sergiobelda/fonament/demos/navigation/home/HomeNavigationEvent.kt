@@ -16,6 +16,7 @@
 
 package dev.sergiobelda.fonament.demos.navigation.home
 
+import dev.sergiobelda.fonament.demos.navigation.home.HomeNavigationEvent.NavigateToDetails
 import dev.sergiobelda.fonament.navigation.FonamentNavigationEvent
 import dev.sergiobelda.fonament.navigation.FonamentNavigationEventHandler
 
@@ -26,8 +27,8 @@ sealed interface HomeNavigationEvent : FonamentNavigationEvent {
 
 fun homeNavigationEventHandler(
     navigateToDetails: () -> Unit,
-) = FonamentNavigationEventHandler {
+) = FonamentNavigationEventHandler<HomeNavigationEvent> {
     when (it) {
-        is HomeNavigationEvent.NavigateToDetails -> navigateToDetails.invoke()
+        NavigateToDetails -> navigateToDetails.invoke()
     }
 }
