@@ -25,8 +25,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.Saver
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import dev.sergiobelda.fonament.ui.FonamentContentState
 import dev.sergiobelda.fonament.ui.FonamentEvent
@@ -61,6 +62,28 @@ data class SampleContentState(
             }
         }
     }
+
+    companion object {
+
+        fun saver(
+            lazyListState: LazyListState,
+            sheetState: SheetState,
+            coroutineScope: CoroutineScope,
+        ): Saver<SampleContentState, Boolean> = Saver(
+            save = {
+                it.showBottomSheet
+            },
+            restore = {
+                SampleContentState(
+                    lazyListState = lazyListState,
+                    sheetState = sheetState,
+                    coroutineScope = coroutineScope,
+                ).apply {
+                    showBottomSheet = it
+                }
+            },
+        )
+    }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -70,7 +93,13 @@ fun rememberSampleContentState(
     sheetState: SheetState = rememberModalBottomSheetState(),
     coroutineScope: CoroutineScope = rememberCoroutineScope(),
 ): SampleContentState =
-    remember {
+    rememberSaveable(
+        saver = SampleContentState.saver(
+            lazyListState = lazyListState,
+            sheetState = sheetState,
+            coroutineScope = coroutineScope,
+        ),
+    ) {
         SampleContentState(
             lazyListState = lazyListState,
             sheetState = sheetState,

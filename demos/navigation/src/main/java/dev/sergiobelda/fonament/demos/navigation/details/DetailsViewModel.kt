@@ -14,9 +14,11 @@
  * limitations under the License.
  */
 
-package dev.sergiobelda.fonament.ui
+package dev.sergiobelda.fonament.demos.navigation.details
 
-interface FonamentUIState {
+import dev.sergiobelda.fonament.ui.FonamentUIState
+import dev.sergiobelda.fonament.ui.FonamentViewModel
 
-    companion object : FonamentUIState
-}
+class DetailsViewModel : FonamentViewModel<FonamentUIState>(
+    initialUIState = FonamentUIState,
+)

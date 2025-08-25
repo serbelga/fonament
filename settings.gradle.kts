@@ -28,5 +28,6 @@ include(":fonament-di:koin")
 
 include(":demos:basic")
 include(":demos:koin")
+include(":demos:navigation")
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")

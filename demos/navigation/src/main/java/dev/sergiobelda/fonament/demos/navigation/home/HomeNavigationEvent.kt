@@ -14,9 +14,20 @@
  * limitations under the License.
  */
 
-package dev.sergiobelda.fonament.ui
+package dev.sergiobelda.fonament.demos.navigation.home
 
-interface FonamentUIState {
+import dev.sergiobelda.fonament.navigation.FonamentNavigationEvent
+import dev.sergiobelda.fonament.navigation.FonamentNavigationEventHandler
 
-    companion object : FonamentUIState
+sealed interface HomeNavigationEvent : FonamentNavigationEvent {
+
+    data object NavigateToDetails : HomeNavigationEvent
+}
+
+fun homeNavigationEventHandler(
+    navigateToDetails: () -> Unit,
+) = FonamentNavigationEventHandler {
+    when (it) {
+        is HomeNavigationEvent.NavigateToDetails -> navigateToDetails.invoke()
+    }
 }
