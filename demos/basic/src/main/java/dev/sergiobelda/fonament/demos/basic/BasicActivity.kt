@@ -30,7 +30,7 @@ class BasicActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            SampleScreen.Content(
+            SampleScreen(
                 viewModel = viewModel<SampleViewModel>(),
             )
         }

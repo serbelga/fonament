@@ -14,28 +14,16 @@
  * limitations under the License.
  */
 
-package dev.sergiobelda.fonament.ui
+package dev.sergiobelda.fonament.samples
 
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
 
-abstract class FonamentUI<U : FonamentUIState>(
-    protected open val content: FonamentContent<U, *>,
-) {
-
-    @Composable
-    operator fun invoke(
-        viewModel: FonamentViewModel<U>,
-        modifier: Modifier = Modifier,
-        onEvent: (FonamentEvent) -> Unit = {},
-    ) {
-        content.invoke(
-            uiState = viewModel.uiState,
-            modifier = modifier,
-            onEvent = {
-                viewModel.handleEvent(it)
-                onEvent.invoke(it)
-            },
-        )
-    }
+@Preview
+@Composable
+fun SampleScreenPreview() {
+    SampleScreen(
+        viewModel = viewModel<SampleViewModel>(),
+    )
 }

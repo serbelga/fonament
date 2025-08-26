@@ -47,7 +47,7 @@ class KoinBasicActivity : ComponentActivity() {
                     )
                 },
             ) {
-                SampleScreen.Content(
+                SampleScreen(
                     viewModel = koinFonamentViewModel(),
                     // Change the qualifier to see the difference.
                     // viewModel = koinFonamentViewModel(named("V2")),

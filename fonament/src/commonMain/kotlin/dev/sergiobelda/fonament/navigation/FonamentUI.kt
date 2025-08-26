@@ -14,12 +14,4 @@
  * limitations under the License.
  */
 
-package dev.sergiobelda.fonament.samples
-
-import androidx.compose.material3.ExperimentalMaterial3Api
-import dev.sergiobelda.fonament.ui.FonamentUI
-
-@OptIn(ExperimentalMaterial3Api::class)
-data object SampleScreen : FonamentUI<SampleUIState>(
-    content = SampleContent,
-)
+package dev.sergiobelda.fonament.navigation

@@ -16,10 +16,25 @@
 
 package dev.sergiobelda.fonament.ui
 
-/**
- */
-interface FonamentUIElementState : FonamentEventHandler {
-    override fun handleEvent(event: FonamentEvent) = Unit
-}
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 
-data object NoUIElementState : FonamentUIElementState
+abstract class FonamentStatelessContent : FonamentContent<NoUIState, NoContentState>() {
+
+    @Composable
+    override fun createContentState(uiState: NoUIState): NoContentState =
+        NoContentState
+
+    @Composable
+    operator fun invoke(
+        modifier: Modifier = Modifier,
+        onEvent: (FonamentEvent) -> Unit = {},
+    ) {
+        invoke(
+            uiState = NoUIState,
+            contentState = NoContentState,
+            modifier = modifier,
+            onEvent = onEvent,
+        )
+    }
+}

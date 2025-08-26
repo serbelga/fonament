@@ -27,7 +27,7 @@ import dev.sergiobelda.fonament.demos.navigation.details.DetailsContent
 import dev.sergiobelda.fonament.demos.navigation.details.detailsNavigationEventHandler
 import dev.sergiobelda.fonament.demos.navigation.home.HomeContent
 import dev.sergiobelda.fonament.demos.navigation.home.homeNavigationEventHandler
-import dev.sergiobelda.fonament.navigation.ContentNavigationNode
+import dev.sergiobelda.fonament.navigation.NavigationNode
 
 class NavigationActivity : ComponentActivity() {
 
@@ -41,21 +41,21 @@ class NavigationActivity : ComponentActivity() {
                 startDestination = HomeContent,
             ) {
                 composable<HomeContent> {
-                    HomeContent.ContentNavigationNode(
+                    HomeContent.NavigationNode(
                         navigationEventHandler = homeNavigationEventHandler(
                             navigateToDetails = {
                                 navController.navigate(DetailsContent)
                             },
-                        )
+                        ),
                     )
                 }
                 composable<DetailsContent> {
-                    DetailsContent.ContentNavigationNode(
+                    DetailsContent.NavigationNode(
                         navigationEventHandler = detailsNavigationEventHandler(
                             navigateBack = {
                                 navController.popBackStack()
-                            }
-                        )
+                            },
+                        ),
                     )
                 }
             }

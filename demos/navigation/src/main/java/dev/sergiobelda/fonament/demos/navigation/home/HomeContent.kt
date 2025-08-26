@@ -25,9 +25,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import dev.sergiobelda.fonament.ui.NoUIElementState
-import dev.sergiobelda.fonament.ui.NoUIState
 import dev.sergiobelda.fonament.ui.FonamentStatelessContent
+import dev.sergiobelda.fonament.ui.NoContentState
+import dev.sergiobelda.fonament.ui.NoUIState
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -36,8 +36,8 @@ data object HomeContent : FonamentStatelessContent() {
     @Composable
     override fun Content(
         uiState: NoUIState,
-        uiElementState: NoUIElementState,
-        modifier: Modifier
+        contentState: NoContentState,
+        modifier: Modifier,
     ) {
         Box(
             modifier = Modifier

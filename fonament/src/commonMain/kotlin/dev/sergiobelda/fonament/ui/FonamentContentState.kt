@@ -14,16 +14,12 @@
  * limitations under the License.
  */
 
-package dev.sergiobelda.fonament.samples
+package dev.sergiobelda.fonament.ui
 
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.lifecycle.viewmodel.compose.viewModel
-
-@Preview
-@Composable
-fun SampleContentPreview() {
-    SampleScreen.Content(
-        viewModel = viewModel<SampleViewModel>(),
-    )
+/**
+ */
+interface FonamentContentState : FonamentEventHandler {
+    override fun handleEvent(event: FonamentEvent) = Unit
 }
+
+data object NoContentState : FonamentContentState
