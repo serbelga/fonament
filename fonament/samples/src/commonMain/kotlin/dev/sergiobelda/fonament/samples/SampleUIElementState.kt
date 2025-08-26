@@ -29,18 +29,18 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.Saver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
-import dev.sergiobelda.fonament.ui.FonamentContentState
+import dev.sergiobelda.fonament.ui.FonamentUIElementState
 import dev.sergiobelda.fonament.ui.FonamentEvent
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Stable
-data class SampleContentState(
+data class SampleUIElementState(
     val lazyListState: LazyListState,
     val sheetState: SheetState,
     val coroutineScope: CoroutineScope,
-) : FonamentContentState {
+) : FonamentUIElementState {
 
     var showBottomSheet by mutableStateOf(false)
         private set
@@ -69,12 +69,12 @@ data class SampleContentState(
             lazyListState: LazyListState,
             sheetState: SheetState,
             coroutineScope: CoroutineScope,
-        ): Saver<SampleContentState, Boolean> = Saver(
+        ): Saver<SampleUIElementState, Boolean> = Saver(
             save = {
                 it.showBottomSheet
             },
             restore = {
-                SampleContentState(
+                SampleUIElementState(
                     lazyListState = lazyListState,
                     sheetState = sheetState,
                     coroutineScope = coroutineScope,
@@ -92,15 +92,15 @@ fun rememberSampleContentState(
     lazyListState: LazyListState = rememberLazyListState(),
     sheetState: SheetState = rememberModalBottomSheetState(),
     coroutineScope: CoroutineScope = rememberCoroutineScope(),
-): SampleContentState =
+): SampleUIElementState =
     rememberSaveable(
-        saver = SampleContentState.saver(
+        saver = SampleUIElementState.saver(
             lazyListState = lazyListState,
             sheetState = sheetState,
             coroutineScope = coroutineScope,
         ),
     ) {
-        SampleContentState(
+        SampleUIElementState(
             lazyListState = lazyListState,
             sheetState = sheetState,
             coroutineScope = coroutineScope,

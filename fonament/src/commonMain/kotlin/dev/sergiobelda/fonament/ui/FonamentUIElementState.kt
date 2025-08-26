@@ -18,8 +18,8 @@ package dev.sergiobelda.fonament.ui
 
 /**
  */
-interface FonamentContentState : FonamentEventHandler {
+interface FonamentUIElementState : FonamentEventHandler {
     override fun handleEvent(event: FonamentEvent) = Unit
-
-    companion object : FonamentContentState
 }
+
+data object NoUIElementState : FonamentUIElementState

@@ -20,18 +20,52 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 
-abstract class FonamentUI2<U : FonamentUIState>(
-    private val content: FonamentContent<U, *>,
+abstract class FonamentStatelessContent() : FonamentContent<NoUIState, NoUIElementState>() {
+
+    @Composable
+    fun Content(
+        modifier: Modifier = Modifier,
+        onEvent: (FonamentEvent) -> Unit = {}
+    ) {
+        Content(
+            uiState = NoUIState,
+            uiElementState = NoUIElementState,
+            modifier = modifier,
+            onEvent = onEvent
+        )
+    }
+}
+
+object NoUIElementStateFactory : FonamentUIElementStateFactory<NoUIState, NoUIElementState> {
+    @Composable
+    override fun rememberUIElementState(
+        uiState: NoUIState
+    ): NoUIElementState = NoUIElementState
+}
+
+abstract class FonamentStatelessFonamentUI(
+    override val content: FonamentContent<NoUIState, NoUIElementState>
+) : FonamentUI2<NoUIState, NoUIElementState>(
+    content = content,
+    uiElementStateFactory = NoUIElementStateFactory,
+)
+
+abstract class FonamentUI2<UIState : FonamentUIState, UIElementState : FonamentUIElementState>(
+    protected open val content: FonamentContent<UIState, UIElementState>,
+    protected val uiElementStateFactory: FonamentUIElementStateFactory<UIState, UIElementState>,
 ) {
 
     @Composable
     fun Content(
-        viewModel: FonamentViewModel<U>,
+        viewModel: FonamentViewModel<UIState>,
         modifier: Modifier = Modifier,
         onEvent: (FonamentEvent) -> Unit = {},
     ) {
         content.Content(
             uiState = viewModel.uiState,
+            uiElementState = uiElementStateFactory.rememberUIElementState(
+                uiState = viewModel.uiState,
+            ),
             modifier = modifier,
             onEvent = {
                 viewModel.handleEvent(it)
@@ -41,39 +75,45 @@ abstract class FonamentUI2<U : FonamentUIState>(
     }
 }
 
-abstract class FonamentContent<U : FonamentUIState, C : FonamentContentState> {
+interface FonamentUIElementStateFactory<
+        UIState : FonamentUIState,
+        UIElementState : FonamentUIElementState
+        > {
+
+    @Composable
+    fun rememberUIElementState(
+        uiState: UIState,
+    ): UIElementState
+}
+
+abstract class FonamentContent<UIState : FonamentUIState, UIElementState : FonamentUIElementState> {
 
     private lateinit var eventHandler: FonamentEventHandler
 
     @Composable
-    abstract fun rememberContentState(
-        uiState: U,
-    ): C
-
-    @Composable
     fun Content(
-        uiState: U,
-        contentState: C = rememberContentState(uiState = uiState),
+        uiState: UIState,
+        uiElementState: UIElementState,
         modifier: Modifier = Modifier,
-        onEvent: (FonamentEvent) -> Unit = {},
+        onEvent: (FonamentEvent) -> Unit = {}
     ) {
-        eventHandler = remember(contentState) {
+        eventHandler = remember(uiElementState) {
             FonamentEventHandler { event ->
-                contentState.handleEvent(event)
+                uiElementState.handleEvent(event)
                 onEvent.invoke(event)
             }
         }
         Content(
             uiState = uiState,
-            contentState = contentState,
+            uiElementState = uiElementState,
             modifier = modifier,
         )
     }
 
     @Composable
     protected abstract fun Content(
-        uiState: U,
-        contentState: C,
+        uiState: UIState,
+        uiElementState: UIElementState,
         modifier: Modifier,
     )
 
@@ -88,12 +128,12 @@ abstract class FonamentContent<U : FonamentUIState, C : FonamentContentState> {
  *
  * @sample dev.sergiobelda.fonament.samples.SampleContent
  */
-abstract class FonamentUI<U : FonamentUIState, C : FonamentContentState> {
+abstract class FonamentUI<U : FonamentUIState, C : FonamentUIElementState> {
 
     private lateinit var eventHandler: FonamentEventHandler
 
     @Composable
-    abstract fun rememberContentState(
+    abstract fun rememberUIElementState(
         uiState: U,
     ): C
 
@@ -102,7 +142,7 @@ abstract class FonamentUI<U : FonamentUIState, C : FonamentContentState> {
         viewModel: FonamentViewModel<U>,
         onEvent: (FonamentEvent) -> Unit = {},
     ) {
-        val contentState = rememberContentState(
+        val contentState = rememberUIElementState(
             uiState = viewModel.uiState,
         )
         eventHandler = remember(contentState) {

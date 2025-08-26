@@ -23,25 +23,20 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import dev.sergiobelda.fonament.ui.FonamentContent
-import dev.sergiobelda.fonament.ui.FonamentContentState
-import dev.sergiobelda.fonament.ui.FonamentUI
-import dev.sergiobelda.fonament.ui.FonamentUIState
+import dev.sergiobelda.fonament.ui.NoUIElementState
+import dev.sergiobelda.fonament.ui.NoUIState
+import dev.sergiobelda.fonament.ui.FonamentStatelessContent
 import kotlinx.serialization.Serializable
 
 @Serializable
-data object DetailsScreen : FonamentContent<FonamentUIState, FonamentContentState>() {
-    @Composable
-    override fun rememberContentState(uiState: FonamentUIState): FonamentContentState =
-        FonamentContentState
+data object DetailsContent : FonamentStatelessContent() {
 
     @Composable
     override fun Content(
-        uiState: FonamentUIState,
-        contentState: FonamentContentState,
+        uiState: NoUIState,
+        uiElementState: NoUIElementState,
         modifier: Modifier
     ) {
         Box(

@@ -16,7 +16,6 @@
 
 package dev.sergiobelda.fonament.ui
 
-interface FonamentUIState {
+interface FonamentUIState
 
-    companion object : FonamentUIState
-}
+data object NoUIState : FonamentUIState

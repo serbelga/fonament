@@ -48,18 +48,18 @@ import dev.sergiobelda.fonament.ui.FonamentUI
 import kotlinx.collections.immutable.ImmutableList
 
 @OptIn(ExperimentalMaterial3Api::class)
-data object SampleScreen : FonamentUI<SampleUIState, SampleContentState>() {
+data object SampleScreen : FonamentUI<SampleUIState, SampleUIElementState>() {
 
     @Composable
-    override fun rememberContentState(
+    override fun rememberUIElementState(
         uiState: SampleUIState,
-    ): SampleContentState =
+    ): SampleUIElementState =
         rememberSampleContentState()
 
     @Composable
     override fun Content(
         uiState: SampleUIState,
-        contentState: SampleContentState,
+        contentState: SampleUIElementState,
     ) {
         Scaffold(
             bottomBar = { BottomBar() },

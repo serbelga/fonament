@@ -20,16 +20,14 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import dev.sergiobelda.fonament.demos.navigation.details.DetailsScreen
-import dev.sergiobelda.fonament.demos.navigation.home.HomeScreen
-import dev.sergiobelda.fonament.demos.navigation.home.HomeViewModel
+import dev.sergiobelda.fonament.demos.navigation.details.DetailsContent
+import dev.sergiobelda.fonament.demos.navigation.details.detailsNavigationEventHandler
+import dev.sergiobelda.fonament.demos.navigation.home.HomeContent
 import dev.sergiobelda.fonament.demos.navigation.home.homeNavigationEventHandler
 import dev.sergiobelda.fonament.navigation.ContentNavigationNode
-import dev.sergiobelda.fonament.ui.FonamentUIState
 
 class NavigationActivity : ComponentActivity() {
 
@@ -40,21 +38,24 @@ class NavigationActivity : ComponentActivity() {
             val navController = rememberNavController()
             NavHost(
                 navController = navController,
-                startDestination = HomeScreen,
+                startDestination = HomeContent,
             ) {
-                composable<HomeScreen> {
-                    HomeScreen.ContentNavigationNode(
+                composable<HomeContent> {
+                    HomeContent.ContentNavigationNode(
                         navigationEventHandler = homeNavigationEventHandler(
                             navigateToDetails = {
-                                navController.navigate(DetailsScreen)
+                                navController.navigate(DetailsContent)
                             },
-                        ),
-                        viewModel = viewModel<HomeViewModel>(),
+                        )
                     )
                 }
-                composable<DetailsScreen> {
-                    DetailsScreen.Content(
-                        uiState = FonamentUIState,
+                composable<DetailsContent> {
+                    DetailsContent.ContentNavigationNode(
+                        navigationEventHandler = detailsNavigationEventHandler(
+                            navigateBack = {
+                                navController.popBackStack()
+                            }
+                        )
                     )
                 }
             }
