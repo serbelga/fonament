@@ -45,10 +45,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import dev.sergiobelda.fonament.ui.FonamentUI
+import dev.sergiobelda.fonament.ui.FonamentUI2
 import kotlinx.collections.immutable.ImmutableList
 
 @OptIn(ExperimentalMaterial3Api::class)
-data object SampleScreen : FonamentUI<SampleUIState, SampleUIElementState>() {
+data object SampleScreen : FonamentUI2<SampleUIState, SampleUIElementState>(
+
+) {
 
     @Composable
     override fun rememberUIElementState(

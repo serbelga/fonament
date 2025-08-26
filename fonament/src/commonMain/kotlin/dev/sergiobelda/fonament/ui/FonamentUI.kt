@@ -36,36 +36,36 @@ abstract class FonamentStatelessContent() : FonamentContent<NoUIState, NoUIEleme
     }
 }
 
-object NoUIElementStateFactory : FonamentUIElementStateFactory<NoUIState, NoUIElementState> {
-    @Composable
-    override fun rememberUIElementState(
-        uiState: NoUIState
-    ): NoUIElementState = NoUIElementState
-}
-
-abstract class FonamentStatelessFonamentUI(
+/*abstract class FonamentStatelessUI(
     override val content: FonamentContent<NoUIState, NoUIElementState>
 ) : FonamentUI2<NoUIState, NoUIElementState>(
     content = content,
-    uiElementStateFactory = NoUIElementStateFactory,
-)
+) {
+
+    @Composable
+    override fun createUIElementState(
+        uiState: NoUIState,
+    ): NoUIElementState = NoUIElementState
+}*/
 
 abstract class FonamentUI2<UIState : FonamentUIState, UIElementState : FonamentUIElementState>(
     protected open val content: FonamentContent<UIState, UIElementState>,
-    protected val uiElementStateFactory: FonamentUIElementStateFactory<UIState, UIElementState>,
 ) {
+    @Composable
+    abstract fun createUIElementState(
+        uiState: UIState,
+    ): UIElementState
 
     @Composable
     fun Content(
         viewModel: FonamentViewModel<UIState>,
+        uiElementState: UIElementState = createUIElementState(viewModel.uiState),
         modifier: Modifier = Modifier,
         onEvent: (FonamentEvent) -> Unit = {},
     ) {
         content.Content(
             uiState = viewModel.uiState,
-            uiElementState = uiElementStateFactory.rememberUIElementState(
-                uiState = viewModel.uiState,
-            ),
+            uiElementState = uiElementState,
             modifier = modifier,
             onEvent = {
                 viewModel.handleEvent(it)
@@ -75,16 +75,13 @@ abstract class FonamentUI2<UIState : FonamentUIState, UIElementState : FonamentU
     }
 }
 
-interface FonamentUIElementStateFactory<
-        UIState : FonamentUIState,
-        UIElementState : FonamentUIElementState
-        > {
+/*
+interface FonamentUIElementStateFactory<UIElementState : FonamentUIElementState> {
 
     @Composable
-    fun rememberUIElementState(
-        uiState: UIState,
-    ): UIElementState
+    fun createUIElementState(): UIElementState
 }
+*/
 
 abstract class FonamentContent<UIState : FonamentUIState, UIElementState : FonamentUIElementState> {
 
