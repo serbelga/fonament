@@ -18,6 +18,71 @@ package dev.sergiobelda.fonament.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+
+abstract class FonamentUI2<U : FonamentUIState>(
+    private val content: FonamentContent<U, *>,
+) {
+
+    @Composable
+    fun Content(
+        viewModel: FonamentViewModel<U>,
+        modifier: Modifier = Modifier,
+        onEvent: (FonamentEvent) -> Unit = {},
+    ) {
+        content.Content(
+            uiState = viewModel.uiState,
+            modifier = modifier,
+            onEvent = {
+                viewModel.handleEvent(it)
+                onEvent.invoke(it)
+            }
+        )
+    }
+}
+
+abstract class FonamentContent<U : FonamentUIState, C : FonamentContentState> {
+
+    private lateinit var eventHandler: FonamentEventHandler
+
+    @Composable
+    abstract fun rememberContentState(
+        uiState: U,
+    ): C
+
+    @Composable
+    fun Content(
+        uiState: U,
+        contentState: C = rememberContentState(uiState = uiState),
+        modifier: Modifier = Modifier,
+        onEvent: (FonamentEvent) -> Unit = {},
+    ) {
+        eventHandler = remember(contentState) {
+            FonamentEventHandler { event ->
+                contentState.handleEvent(event)
+                onEvent.invoke(event)
+            }
+        }
+        Content(
+            uiState = uiState,
+            contentState = contentState,
+            modifier = modifier,
+        )
+    }
+
+    @Composable
+    protected abstract fun Content(
+        uiState: U,
+        contentState: C,
+        modifier: Modifier,
+    )
+
+    protected fun onEvent(
+        event: FonamentEvent,
+    ) {
+        eventHandler.handleEvent(event)
+    }
+}
 
 /**
  *

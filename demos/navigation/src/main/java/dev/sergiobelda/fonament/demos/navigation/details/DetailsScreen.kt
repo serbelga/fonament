@@ -26,23 +26,23 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import dev.sergiobelda.fonament.ui.FonamentContent
 import dev.sergiobelda.fonament.ui.FonamentContentState
 import dev.sergiobelda.fonament.ui.FonamentUI
 import dev.sergiobelda.fonament.ui.FonamentUIState
 import kotlinx.serialization.Serializable
 
 @Serializable
-data object DetailsScreen : FonamentUI<FonamentUIState, FonamentContentState>() {
+data object DetailsScreen : FonamentContent<FonamentUIState, FonamentContentState>() {
     @Composable
-    override fun rememberContentState(
-        uiState: FonamentUIState,
-    ): FonamentContentState =
-        remember { FonamentContentState }
+    override fun rememberContentState(uiState: FonamentUIState): FonamentContentState =
+        FonamentContentState
 
     @Composable
     override fun Content(
         uiState: FonamentUIState,
         contentState: FonamentContentState,
+        modifier: Modifier
     ) {
         Box(
             modifier = Modifier

@@ -23,6 +23,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                implementation(compose.foundation)
                 implementation(compose.ui)
                 implementation(libs.androidx.lifecycle.viewmodel)
             }

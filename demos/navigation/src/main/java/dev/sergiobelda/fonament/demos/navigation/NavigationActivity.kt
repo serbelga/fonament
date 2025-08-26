@@ -25,12 +25,11 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import dev.sergiobelda.fonament.demos.navigation.details.DetailsScreen
-import dev.sergiobelda.fonament.demos.navigation.details.DetailsViewModel
-import dev.sergiobelda.fonament.demos.navigation.details.detailsNavigationEventHandler
 import dev.sergiobelda.fonament.demos.navigation.home.HomeScreen
 import dev.sergiobelda.fonament.demos.navigation.home.HomeViewModel
 import dev.sergiobelda.fonament.demos.navigation.home.homeNavigationEventHandler
 import dev.sergiobelda.fonament.navigation.ContentNavigationNode
+import dev.sergiobelda.fonament.ui.FonamentUIState
 
 class NavigationActivity : ComponentActivity() {
 
@@ -54,13 +53,8 @@ class NavigationActivity : ComponentActivity() {
                     )
                 }
                 composable<DetailsScreen> {
-                    DetailsScreen.ContentNavigationNode(
-                        navigationEventHandler = detailsNavigationEventHandler(
-                            navigateBack = {
-                                navController.navigateUp()
-                            },
-                        ),
-                        viewModel = viewModel<DetailsViewModel>(),
+                    DetailsScreen.Content(
+                        uiState = FonamentUIState,
                     )
                 }
             }

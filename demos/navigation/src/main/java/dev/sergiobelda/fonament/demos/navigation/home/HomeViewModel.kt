@@ -16,6 +16,8 @@
 
 package dev.sergiobelda.fonament.demos.navigation.home
 
+import androidx.compose.runtime.Composable
+import androidx.lifecycle.viewmodel.compose.viewModel
 import dev.sergiobelda.fonament.ui.FonamentUIState
 import dev.sergiobelda.fonament.ui.FonamentViewModel
 
