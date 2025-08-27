@@ -18,18 +18,18 @@ package dev.sergiobelda.fonament.samples
 
 import dev.sergiobelda.fonament.ui.FonamentEvent
 
-sealed class SampleEvent : FonamentEvent {
+sealed interface SampleEvent : FonamentEvent {
     data class ItemChecked(
         val item: SampleItemModel,
-    ) : SampleEvent()
+    ) : SampleEvent
 
-    data object IncreaseCounter : SampleEvent()
+    data object IncreaseCounter : SampleEvent
 
-    data object DecreaseCounter : SampleEvent()
+    data object DecreaseCounter : SampleEvent
 
-    data object OpenBottomSheet : SampleEvent()
+    data object OpenBottomSheet : SampleEvent
 
-    data object CloseBottomSheet : SampleEvent()
+    data object CloseBottomSheet : SampleEvent
 
-    data object DismissBottomSheet : SampleEvent()
+    data object DismissBottomSheet : SampleEvent
 }

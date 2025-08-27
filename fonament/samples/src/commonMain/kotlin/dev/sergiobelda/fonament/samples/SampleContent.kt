@@ -36,6 +36,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SheetState
 import androidx.compose.material3.Text
@@ -61,123 +62,132 @@ data object SampleContent : FonamentContent<SampleUIState, SampleContentState>()
         modifier: Modifier,
     ) {
         Scaffold(
-            bottomBar = { BottomBar() },
+            bottomBar = {
+                BottomBar(::onEvent)
+            },
         ) { paddingValues ->
             ContentList(
                 lazyListState = contentState.lazyListState,
                 list = uiState.list,
                 modifier = Modifier.padding(paddingValues),
+                onEvent = ::onEvent,
             )
         }
         if (contentState.showBottomSheet) {
             ModalBottomSheet(
                 sheetState = contentState.sheetState,
                 counter = uiState.counter,
+                onEvent = ::onEvent,
             )
         }
     }
+}
 
-    @Composable
-    private fun BottomBar() {
-        BottomAppBar(
-            content = {
-                IconButton(
-                    onClick = {
-                        onEvent(SampleEvent.OpenBottomSheet)
-                    },
-                ) {
-                    Icon(
-                        Icons.Rounded.Menu,
-                        contentDescription = null,
-                    )
-                }
-            },
-        )
-    }
-
-    @Composable
-    private fun ContentList(
-        lazyListState: LazyListState,
-        modifier: Modifier,
-        list: ImmutableList<SampleItemModel>,
-    ) {
-        LazyColumn(
-            state = lazyListState,
-            modifier = modifier,
-        ) {
-            items(
-                list,
-                key = { it.index },
-                contentType = { it::class },
-            ) { item ->
-                ListItem(
-                    headlineContent = {
-                        Text(text = item.text)
-                    },
-                    trailingContent = {
-                        Checkbox(
-                            checked = item.checked,
-                            onCheckedChange = {
-                                onEvent(SampleEvent.ItemChecked(item))
-                            },
-                        )
-                    },
+@Composable
+private fun BottomBar(
+    onEvent: (SampleEvent) -> Unit,
+) {
+    BottomAppBar(
+        content = {
+            IconButton(
+                onClick = {
+                    onEvent(SampleEvent.OpenBottomSheet)
+                },
+            ) {
+                Icon(
+                    Icons.Rounded.Menu,
+                    contentDescription = null,
                 )
             }
+        },
+    )
+}
+
+@Composable
+private fun ContentList(
+    lazyListState: LazyListState,
+    modifier: Modifier,
+    list: ImmutableList<SampleItemModel>,
+    onEvent: (SampleEvent) -> Unit,
+) {
+    LazyColumn(
+        state = lazyListState,
+        modifier = modifier,
+    ) {
+        items(
+            list,
+            key = { it.index },
+            contentType = { it::class },
+        ) { item ->
+            ListItem(
+                headlineContent = {
+                    Text(text = item.text)
+                },
+                trailingContent = {
+                    Checkbox(
+                        checked = item.checked,
+                        onCheckedChange = {
+                            onEvent(SampleEvent.ItemChecked(item))
+                        },
+                    )
+                },
+            )
         }
     }
+}
 
-    @Composable
-    private fun ModalBottomSheet(
-        sheetState: SheetState,
-        counter: Int,
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun ModalBottomSheet(
+    sheetState: SheetState,
+    counter: Int,
+    onEvent: (SampleEvent) -> Unit,
+) {
+    ModalBottomSheet(
+        onDismissRequest = { onEvent(SampleEvent.DismissBottomSheet) },
+        sheetState = sheetState,
     ) {
-        androidx.compose.material3.ModalBottomSheet(
-            onDismissRequest = { onEvent(SampleEvent.DismissBottomSheet) },
-            sheetState = sheetState,
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.padding(24.dp),
         ) {
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier.padding(24.dp),
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.End,
             ) {
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.End,
+                IconButton(
+                    onClick = { onEvent(SampleEvent.CloseBottomSheet) },
                 ) {
-                    IconButton(
-                        onClick = { onEvent(SampleEvent.CloseBottomSheet) },
-                    ) {
-                        Icon(
-                            Icons.Rounded.Clear,
-                            contentDescription = "Close",
-                        )
-                    }
-                }
-                Row(
-                    horizontalArrangement = Arrangement.spacedBy(12.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
-                    IconButton(
-                        onClick = { onEvent(SampleEvent.DecreaseCounter) },
-                        enabled = counter > 0,
-                    ) {
-                        Icon(
-                            Icons.Rounded.Remove,
-                            contentDescription = "Decrease",
-                        )
-                    }
-                    Text(
-                        text = "$counter",
-                        style = MaterialTheme.typography.bodyLarge,
+                    Icon(
+                        Icons.Rounded.Clear,
+                        contentDescription = "Close",
                     )
-                    IconButton(
-                        onClick = { onEvent(SampleEvent.IncreaseCounter) },
-                    ) {
-                        Icon(
-                            Icons.Rounded.Add,
-                            contentDescription = "Increase",
-                        )
-                    }
+                }
+            }
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(12.dp),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                IconButton(
+                    onClick = { onEvent(SampleEvent.DecreaseCounter) },
+                    enabled = counter > 0,
+                ) {
+                    Icon(
+                        Icons.Rounded.Remove,
+                        contentDescription = "Decrease",
+                    )
+                }
+                Text(
+                    text = "$counter",
+                    style = MaterialTheme.typography.bodyLarge,
+                )
+                IconButton(
+                    onClick = { onEvent(SampleEvent.IncreaseCounter) },
+                ) {
+                    Icon(
+                        Icons.Rounded.Add,
+                        contentDescription = "Increase",
+                    )
                 }
             }
         }

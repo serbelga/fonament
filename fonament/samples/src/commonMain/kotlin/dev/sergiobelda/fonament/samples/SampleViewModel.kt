@@ -21,16 +21,8 @@ import dev.sergiobelda.fonament.ui.FonamentViewModel
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toPersistentList
 
-private val sampleData = List(50) {
-    SampleItemModel(
-        index = it,
-        text = "Item $it",
-        checked = it % 5 == 0,
-    )
-}.toPersistentList()
-
 open class SampleViewModel(
-    list: ImmutableList<SampleItemModel> = sampleData,
+    list: ImmutableList<SampleItemModel> = sampleItemModels,
     counter: Int = 0,
 ) : FonamentViewModel<SampleUIState>(
     initialUIState = SampleUIState(
@@ -75,6 +67,6 @@ open class SampleViewModel(
 }
 
 class SampleViewModelV2 : SampleViewModel(
-    list = sampleData.take(10).toPersistentList(),
+    list = sampleItemModels.take(10).toPersistentList(),
     counter = 100,
 )

@@ -40,9 +40,10 @@ data class SampleContentState(
     val lazyListState: LazyListState,
     val sheetState: SheetState,
     val coroutineScope: CoroutineScope,
+    val initialShowBottomSheet: Boolean = false,
 ) : FonamentContentState {
 
-    var showBottomSheet by mutableStateOf(false)
+    var showBottomSheet by mutableStateOf(initialShowBottomSheet)
         private set
 
     override fun handleEvent(event: FonamentEvent) {
@@ -92,6 +93,7 @@ fun rememberSampleContentState(
     lazyListState: LazyListState = rememberLazyListState(),
     sheetState: SheetState = rememberModalBottomSheetState(),
     coroutineScope: CoroutineScope = rememberCoroutineScope(),
+    initialShowBottomSheet: Boolean = false,
 ): SampleContentState =
     rememberSaveable(
         saver = SampleContentState.saver(
@@ -104,5 +106,6 @@ fun rememberSampleContentState(
             lazyListState = lazyListState,
             sheetState = sheetState,
             coroutineScope = coroutineScope,
+            initialShowBottomSheet = initialShowBottomSheet,
         )
     }

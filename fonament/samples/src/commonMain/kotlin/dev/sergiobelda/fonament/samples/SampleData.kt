@@ -16,14 +16,12 @@
 
 package dev.sergiobelda.fonament.samples
 
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.lifecycle.viewmodel.compose.viewModel
+import kotlinx.collections.immutable.toPersistentList
 
-@Preview
-@Composable
-fun SampleScreenPreview() {
-    SampleScreen(
-        viewModel = viewModel<SampleViewModel>(),
+internal val sampleItemModels = List(50) {
+    SampleItemModel(
+        index = it,
+        text = "Item $it",
+        checked = it % 5 == 0,
     )
-}
+}.toPersistentList()
