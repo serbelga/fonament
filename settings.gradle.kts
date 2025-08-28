@@ -1,4 +1,5 @@
 pluginManagement {
+    includeBuild("gradle/build-logic")
     repositories {
         google {
             content {
@@ -22,8 +23,12 @@ dependencyResolutionManagement {
 rootProject.name = "fonament-root"
 
 include(":fonament")
+include(":fonament:samples")
 include(":fonament-di:koin")
 
-include(":sample-app")
+include(":demos:basic")
+include(":demos:hilt")
+include(":demos:koin")
+include(":demos:navigation")
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")

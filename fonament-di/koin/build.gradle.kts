@@ -1,45 +1,58 @@
 plugins {
     alias(libs.plugins.android.library)
-    alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.jetbrains.compose.multiplatform)
+    alias(libs.plugins.jetbrains.kotlin.compose)
+    alias(libs.plugins.jetbrains.kotlin.multiplatform)
+    id("dev.sergiobelda.gradle.spotless")
+}
+
+group = "dev.sergiobelda.fonament.di.koin"
+version = libs.versions.fonament.get()
+
+kotlin {
+    androidTarget()
+    jvm("desktop")
+    iosX64()
+    iosArm64()
+    iosSimulatorArm64()
+    js(IR) {
+        browser()
+        binaries.executable()
+    }
+
+    sourceSets {
+        val commonMain by getting {
+            dependencies {
+                api(projects.fonament)
+
+                api(project.dependencies.platform(libs.koin.bom))
+                api(libs.koin.core)
+                api(libs.koin.compose.viewmodel)
+
+                implementation(compose.ui)
+                implementation(libs.jetbrains.androidx.lifecycle.viewmodelCompose)
+            }
+        }
+        val androidMain by getting {
+            dependencies {
+                implementation(libs.androidx.core.ktx)
+            }
+        }
+    }
 }
 
 android {
     namespace = "dev.sergiobelda.fonament.di.koin"
-    compileSdk = 36
+    compileSdk = libs.versions.androidCompileSdk.get().toInt()
+
     defaultConfig {
-        minSdk = 24
+        minSdk = libs.versions.androidMinSdk.get().toInt()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
 
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
-    }
     kotlin {
         jvmToolchain(17)
     }
-    buildFeatures {
-        compose = true
-    }
-}
-
-dependencies {
-    api(projects.fonament)
-
-    implementation(project.dependencies.platform(libs.koin.bom))
-    api(libs.koin.core)
-    api(libs.koin.compose.viewmodel)
-
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.viewmodel)
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.compose.ui)
 }
