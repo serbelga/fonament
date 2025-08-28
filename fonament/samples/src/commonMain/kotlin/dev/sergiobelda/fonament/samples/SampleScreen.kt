@@ -17,9 +17,10 @@
 package dev.sergiobelda.fonament.samples
 
 import androidx.compose.material3.ExperimentalMaterial3Api
+import dev.sergiobelda.fonament.ui.FonamentContent
 import dev.sergiobelda.fonament.ui.FonamentUI
 
 @OptIn(ExperimentalMaterial3Api::class)
-data object SampleScreen : FonamentUI<SampleUIState>(
-    content = SampleContent,
-)
+data object SampleScreen : FonamentUI<SampleUIState>() {
+    override val content: FonamentContent<SampleUIState, *> = SampleContent
+}

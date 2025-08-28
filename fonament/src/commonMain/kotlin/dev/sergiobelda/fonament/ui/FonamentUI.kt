@@ -19,9 +19,9 @@ package dev.sergiobelda.fonament.ui
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 
-abstract class FonamentUI<U : FonamentUIState>(
-    protected open val content: FonamentContent<U, *>,
-) {
+abstract class FonamentUI<U : FonamentUIState> {
+
+    protected abstract val content: FonamentContent<U, *>
 
     @Composable
     operator fun invoke(
@@ -38,4 +38,9 @@ abstract class FonamentUI<U : FonamentUIState>(
             },
         )
     }
+
+    override fun equals(other: Any?): Boolean =
+        other is FonamentUI<*> && content == other.content
+
+    override fun hashCode(): Int = content.hashCode()
 }

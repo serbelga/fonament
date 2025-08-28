@@ -15,3 +15,23 @@
  */
 
 package dev.sergiobelda.fonament.navigation
+
+import androidx.compose.runtime.Composable
+import dev.sergiobelda.fonament.ui.FonamentUI
+import dev.sergiobelda.fonament.ui.FonamentUIState
+import dev.sergiobelda.fonament.ui.FonamentViewModel
+
+@Composable
+inline fun <reified N, U> FonamentUI<U>.NavigationNode(
+    navigationEventHandler: FonamentNavigationEventHandler<N> = FonamentNavigationEventHandler { },
+    viewModel: FonamentViewModel<U>,
+) where N : FonamentNavigationEvent, U : FonamentUIState {
+    invoke(
+        viewModel = viewModel,
+        onEvent = {
+            if (it is N) {
+                navigationEventHandler.handleNavigationEvent(it)
+            }
+        },
+    )
+}
