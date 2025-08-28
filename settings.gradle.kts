@@ -27,6 +27,7 @@ include(":fonament:samples")
 include(":fonament-di:koin")
 
 include(":demos:basic")
+include(":demos:hilt")
 include(":demos:koin")
 include(":demos:navigation")
 
