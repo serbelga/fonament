@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.compose.multiplatform)
+    alias(libs.plugins.jetbrains.dokka)
     alias(libs.plugins.jetbrains.kotlin.compose)
     alias(libs.plugins.jetbrains.kotlin.multiplatform)
     alias(libs.plugins.vanniktech.maven.publish)
@@ -51,4 +52,8 @@ android {
     kotlin {
         jvmToolchain(17)
     }
+}
+
+tasks.withType<Jar> {
+    from(file("$rootDir/${projects.fonament.name}/samples/src/commonMain/kotlin"))
 }
