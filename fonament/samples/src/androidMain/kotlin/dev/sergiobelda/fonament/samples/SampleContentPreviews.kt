@@ -39,7 +39,7 @@ fun SampleContentPreview2() {
     SampleContent(
         uiState = SampleUIState(
             list = sampleItemModels,
-            counter = 10,
+            counter = 12,
         ),
         contentState = rememberSampleContentState(
             sheetState = rememberStandardBottomSheetState(
