@@ -20,6 +20,7 @@ ksp = "2.2.10-2.0.2"
 ktlint = "0.50.0"
 spotless = "7.2.1"
 navigation = "2.9.3"
+vanniktechMavenPublish = "0.33.0"
 
 [libraries]
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
@@ -68,3 +69,4 @@ jetbrains-compose-multiplatform = { id = "org.jetbrains.compose", version.ref = 
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 jetbrains-kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 jetbrains-kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+vanniktech-maven-publish = { id = "com.vanniktech.maven.publish", version.ref = "vanniktechMavenPublish" }

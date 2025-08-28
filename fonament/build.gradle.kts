@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrains.compose.multiplatform)
     alias(libs.plugins.jetbrains.kotlin.compose)
     alias(libs.plugins.jetbrains.kotlin.multiplatform)
+    alias(libs.plugins.vanniktech.maven.publish)
     id("dev.sergiobelda.gradle.spotless")
 }
 

@@ -3,10 +3,11 @@ plugins {
     alias(libs.plugins.jetbrains.compose.multiplatform)
     alias(libs.plugins.jetbrains.kotlin.compose)
     alias(libs.plugins.jetbrains.kotlin.multiplatform)
+    alias(libs.plugins.vanniktech.maven.publish)
     id("dev.sergiobelda.gradle.spotless")
 }
 
-group = "dev.sergiobelda.fonament.di.koin"
+group = "dev.sergiobelda.fonament"
 version = libs.versions.fonament.get()
 
 kotlin {
@@ -55,4 +56,10 @@ android {
     kotlin {
         jvmToolchain(17)
     }
+}
+
+mavenPublishing {
+    coordinates(
+        artifactId = "fonament-di-koin",
+    )
 }
