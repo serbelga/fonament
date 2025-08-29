@@ -63,4 +63,8 @@ mavenPublishing {
     coordinates(
         artifactId = "fonament-di-koin",
     )
+
+    publishToMavenCentral(true)
+
+    signAllPublications()
 }

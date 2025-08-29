@@ -57,3 +57,9 @@ android {
 tasks.withType<Jar> {
     from(file("$rootDir/${projects.fonament.name}/samples/src/commonMain/kotlin"))
 }
+
+mavenPublishing {
+    publishToMavenCentral(true)
+
+    signAllPublications()
+}
