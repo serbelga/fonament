@@ -27,7 +27,7 @@ import dev.sergiobelda.fonament.demos.navigation.details.DetailsContent
 import dev.sergiobelda.fonament.demos.navigation.details.detailsNavigationEventHandler
 import dev.sergiobelda.fonament.demos.navigation.home.HomeContent
 import dev.sergiobelda.fonament.demos.navigation.home.homeNavigationEventHandler
-import dev.sergiobelda.fonament.navigation.NavigationNode
+import dev.sergiobelda.fonament.presentation.navigation.NavigationNode
 
 class NavigationActivity : ComponentActivity() {
 

@@ -17,8 +17,8 @@
 package dev.sergiobelda.fonament.demos.navigation.details
 
 import dev.sergiobelda.fonament.demos.navigation.details.DetailsNavigationEvent.NavigateBack
-import dev.sergiobelda.fonament.navigation.FonamentNavigationEvent
-import dev.sergiobelda.fonament.navigation.FonamentNavigationEventHandler
+import dev.sergiobelda.fonament.presentation.navigation.FonamentNavigationEvent
+import dev.sergiobelda.fonament.presentation.navigation.FonamentNavigationEventHandler
 
 sealed interface DetailsNavigationEvent : FonamentNavigationEvent {
 

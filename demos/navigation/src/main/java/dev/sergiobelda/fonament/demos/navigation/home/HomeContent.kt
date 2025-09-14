@@ -25,9 +25,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import dev.sergiobelda.fonament.ui.FonamentStatelessContent
-import dev.sergiobelda.fonament.ui.NoContentState
-import dev.sergiobelda.fonament.ui.NoUIState
+import dev.sergiobelda.fonament.presentation.ui.FonamentStatelessContent
+import dev.sergiobelda.fonament.presentation.ui.NoContentState
+import dev.sergiobelda.fonament.presentation.ui.NoUIState
 import kotlinx.serialization.Serializable
 
 @Serializable

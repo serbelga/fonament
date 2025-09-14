@@ -25,14 +25,9 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                api(projects.fonamentPresentation)
-
-                api(project.dependencies.platform(libs.koin.bom))
-                api(libs.koin.core)
-                api(libs.koin.compose.viewmodel)
-
+                implementation(compose.foundation)
                 implementation(compose.ui)
-                implementation(libs.jetbrains.androidx.lifecycle.viewmodelCompose)
+                implementation(libs.androidx.lifecycle.viewmodel)
             }
         }
         val androidMain by getting {
@@ -44,7 +39,7 @@ kotlin {
 }
 
 android {
-    namespace = "dev.sergiobelda.fonament.di.koin"
+    namespace = "dev.sergiobelda.fonament"
     compileSdk = libs.versions.androidCompileSdk.get().toInt()
 
     defaultConfig {
@@ -59,11 +54,11 @@ android {
     }
 }
 
-mavenPublishing {
-    coordinates(
-        artifactId = "fonament-di-koin",
-    )
+tasks.withType<Jar> {
+    from(file("$rootDir/${projects.fonamentPresentation.name}/samples/src/commonMain/kotlin"))
+}
 
+mavenPublishing {
     publishToMavenCentral(true)
 
     signAllPublications()
