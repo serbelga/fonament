@@ -55,6 +55,8 @@ sealed interface EditTaskListEvent : FonamentEvent {
 
 ### Defining the `FonamentContent` class
 
+![FonamentContent](./resources/fonament-ui-content.svg)
+
 <details open>
 
 <summary><code>FonamentContent</code> Code</summary>
@@ -280,3 +282,4 @@ fun EditTaskListContentPreview() {
    See the License for the specific language governing permissions and
    limitations under the License.
 ```
+
