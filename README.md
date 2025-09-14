@@ -265,6 +265,12 @@ fun EditTaskListContentPreview() {
 
 - [Todometer KMP](https://github.com/serbelga/Todometer-KMP/tree/main/app-feature)
 
+## Reference links
+
+- [Classes as state owner](https://developer.android.com/develop/ui/compose/state-hoisting#classes-as-state-owner)
+- [Types of UI state](https://developer.android.com/develop/ui/compose/state-hoisting#types-ui-state)
+- [UI layer architecture](https://developer.android.com/topic/architecture/ui-layer#architecture)
+
 ## License
 
 ```
@@ -282,4 +288,3 @@ fun EditTaskListContentPreview() {
    See the License for the specific language governing permissions and
    limitations under the License.
 ```
-

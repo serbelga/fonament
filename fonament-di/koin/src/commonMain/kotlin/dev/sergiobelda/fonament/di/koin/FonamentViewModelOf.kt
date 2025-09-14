@@ -16,8 +16,8 @@
 
 package dev.sergiobelda.fonament.di.koin
 
-import dev.sergiobelda.fonament.ui.FonamentUIState
-import dev.sergiobelda.fonament.ui.FonamentViewModel
+import dev.sergiobelda.fonament.presentation.ui.FonamentUIState
+import dev.sergiobelda.fonament.presentation.ui.FonamentViewModel
 import org.koin.core.definition.BeanDefinition
 import org.koin.core.definition.KoinDefinition
 import org.koin.core.module.Module

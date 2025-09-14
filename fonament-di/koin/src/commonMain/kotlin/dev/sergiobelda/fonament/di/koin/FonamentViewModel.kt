@@ -20,8 +20,8 @@ import androidx.compose.runtime.Composable
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.lifecycle.viewmodel.CreationExtras
 import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
-import dev.sergiobelda.fonament.ui.FonamentUIState
-import dev.sergiobelda.fonament.ui.FonamentViewModel
+import dev.sergiobelda.fonament.presentation.ui.FonamentUIState
+import dev.sergiobelda.fonament.presentation.ui.FonamentViewModel
 import org.koin.compose.currentKoinScope
 import org.koin.compose.viewmodel.koinViewModel
 import org.koin.core.annotation.KoinInternalApi

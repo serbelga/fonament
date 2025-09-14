@@ -22,9 +22,9 @@ dependencyResolutionManagement {
 
 rootProject.name = "fonament-root"
 
-include(":fonament")
-include(":fonament:samples")
 include(":fonament-di:koin")
+include(":fonament-presentation")
+include(":fonament-presentation:samples")
 
 include(":demos:basic")
 include(":demos:hilt")
