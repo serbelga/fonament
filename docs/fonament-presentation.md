@@ -99,8 +99,8 @@ data object EditTaskListContent : FonamentContent<EditTaskListUIState, EditTaskL
 
 </details>
 
-> [!IMPORTANT]
-> The events can be triggered on `FonamentContent` using the `onEvent` function.
+!!! info
+    The events can be triggered on `FonamentContent` using the `onEvent` function.
 
 <details>
 
@@ -155,8 +155,8 @@ internal fun rememberEditTaskListContentState(
 
 </details>
 
-> [!IMPORTANT]
-> For this implementation we are implementing a custom `Saver` to avoid losing `nameTextFieldValue` between configuration changes. Also, it is **important** to remember the `FonamentContentState` instantiation to be reused across compositions.
+!!! abstract
+    For this implementation we are implementing a custom `Saver` to avoid losing `nameTextFieldValue` between configuration changes. Also, it is **important** to remember the `FonamentContentState` instantiation to be reused across compositions.
 
 ## 📲 Display a Fonament UI Node
 
@@ -172,8 +172,8 @@ fun App() {
 }
 ```
 
-> [!NOTE]
-> We are using the `androidx.lifecycle.viewmodel.compose.viewModel` function to create the ViewModel on this base example, but we can also `Koin` and `Hilt`. Check the examples on `demos` [directory](https://github.com/serbelga/fonament/tree/main/demos).
+!!! info
+    We are using the `androidx.lifecycle.viewmodel.compose.viewModel` function to create the ViewModel on this base example, but we can also `Koin` and `Hilt`. Check the examples on `demos` [directory](https://github.com/serbelga/fonament/tree/main/demos).
 
 ## 🧭 Navigation
 
