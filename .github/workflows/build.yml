@@ -4,9 +4,11 @@ on:
   push:
     branches: 
       - main
+      - develop
   pull_request:
     branches:
       - main
+      - develop
 
 jobs:
   build:
@@ -22,3 +24,7 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: gradle
+    - name: Run spotlessCheck
+      run: ./gradlew spotlessCheck
+    - name: Build project
+      run: ./gradlew assembleDebug
