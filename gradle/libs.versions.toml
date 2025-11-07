@@ -20,7 +20,7 @@ kotlinCollectionsImmutable = "0.4.0"
 ksp = "2.2.20-2.0.4"
 ktlint = "0.50.0"
 spotless = "8.0.0"
-navigation = "2.9.5"
+navigation = "2.9.6"
 vanniktechMavenPublish = "0.34.0"
 
 [libraries]
