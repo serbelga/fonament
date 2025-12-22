@@ -21,7 +21,7 @@ ksp = "2.3.4"
 ktlint = "0.50.0"
 spotless = "8.0.0"
 navigation = "2.9.6"
-vanniktechMavenPublish = "0.34.0"
+vanniktechMavenPublish = "0.35.0"
 
 [libraries]
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
