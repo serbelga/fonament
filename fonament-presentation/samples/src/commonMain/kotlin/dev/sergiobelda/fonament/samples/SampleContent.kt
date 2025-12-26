@@ -49,11 +49,8 @@ import kotlinx.collections.immutable.ImmutableList
 
 @OptIn(ExperimentalMaterial3Api::class)
 data object SampleContent : FonamentContent<SampleUIState, SampleContentState>() {
-
     @Composable
-    override fun createContentState(
-        uiState: SampleUIState,
-    ): SampleContentState = rememberSampleContentState()
+    override fun createContentState(uiState: SampleUIState): SampleContentState = rememberSampleContentState()
 
     @Composable
     override fun Content(
@@ -84,9 +81,7 @@ data object SampleContent : FonamentContent<SampleUIState, SampleContentState>()
 }
 
 @Composable
-private fun BottomBar(
-    onEvent: (SampleEvent) -> Unit,
-) {
+private fun BottomBar(onEvent: (SampleEvent) -> Unit) {
     BottomAppBar(
         content = {
             IconButton(

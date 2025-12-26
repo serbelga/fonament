@@ -25,24 +25,26 @@ open class SampleViewModel(
     list: ImmutableList<SampleItemModel> = sampleItemModels,
     counter: Int = 0,
 ) : FonamentViewModel<SampleUIState>(
-    initialUIState = SampleUIState(
-        list = list,
-        counter = counter,
-    ),
-) {
-
+        initialUIState =
+            SampleUIState(
+                list = list,
+                counter = counter,
+            ),
+    ) {
     override fun handleEvent(event: FonamentEvent) {
         when (event) {
             is SampleEvent.ItemChecked -> {
                 updateUIState {
                     it.copy(
-                        list = it.list.map { item ->
-                            if (item == event.item) {
-                                item.copy(checked = !item.checked)
-                            } else {
-                                item
-                            }
-                        }.toPersistentList(),
+                        list =
+                            it.list
+                                .map { item ->
+                                    if (item == event.item) {
+                                        item.copy(checked = !item.checked)
+                                    } else {
+                                        item
+                                    }
+                                }.toPersistentList(),
                     )
                 }
             }
@@ -66,7 +68,8 @@ open class SampleViewModel(
     }
 }
 
-class SampleViewModelV2 : SampleViewModel(
-    list = sampleItemModels.take(10).toPersistentList(),
-    counter = 100,
-)
+class SampleViewModelV2 :
+    SampleViewModel(
+        list = sampleItemModels.take(10).toPersistentList(),
+        counter = 100,
+    )

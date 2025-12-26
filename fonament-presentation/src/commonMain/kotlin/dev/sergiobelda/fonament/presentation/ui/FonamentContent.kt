@@ -26,13 +26,10 @@ import androidx.compose.ui.Modifier
  * @sample dev.sergiobelda.fonament.samples.SampleContent
  */
 abstract class FonamentContent<U : FonamentUIState, C : FonamentContentState> {
-
     private lateinit var eventHandler: FonamentEventHandler
 
     @Composable
-    abstract fun createContentState(
-        uiState: U,
-    ): C
+    abstract fun createContentState(uiState: U): C
 
     @Composable
     operator fun invoke(
@@ -41,12 +38,13 @@ abstract class FonamentContent<U : FonamentUIState, C : FonamentContentState> {
         modifier: Modifier = Modifier,
         onEvent: (FonamentEvent) -> Unit = {},
     ) {
-        eventHandler = remember(contentState) {
-            FonamentEventHandler { event ->
-                contentState.handleEvent(event)
-                onEvent.invoke(event)
+        eventHandler =
+            remember(contentState) {
+                FonamentEventHandler { event ->
+                    contentState.handleEvent(event)
+                    onEvent.invoke(event)
+                }
             }
-        }
         Content(
             uiState = uiState,
             contentState = contentState,
@@ -61,9 +59,7 @@ abstract class FonamentContent<U : FonamentUIState, C : FonamentContentState> {
         modifier: Modifier,
     )
 
-    protected fun onEvent(
-        event: FonamentEvent,
-    ) {
+    protected fun onEvent(event: FonamentEvent) {
         eventHandler.handleEvent(event)
     }
 
@@ -74,6 +70,5 @@ abstract class FonamentContent<U : FonamentUIState, C : FonamentContentState> {
         return eventHandler == other.eventHandler
     }
 
-    override fun hashCode(): Int =
-        eventHandler.hashCode()
+    override fun hashCode(): Int = eventHandler.hashCode()
 }

@@ -30,7 +30,6 @@ import org.koin.core.qualifier.qualifier
 import org.koin.dsl.module
 
 class KoinBasicActivity : ComponentActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()

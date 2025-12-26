@@ -49,8 +49,9 @@ inline fun <reified U : FonamentUIState> Module.fonamentViewModel(
 @Composable
 inline fun <reified U : FonamentUIState> koinFonamentViewModel(
     qualifier: Qualifier? = named<U>(),
-    viewModelStoreOwner: ViewModelStoreOwner = LocalViewModelStoreOwner.current
-        ?: error("No ViewModelStoreOwner was provided via LocalViewModelStoreOwner"),
+    viewModelStoreOwner: ViewModelStoreOwner =
+        LocalViewModelStoreOwner.current
+            ?: error("No ViewModelStoreOwner was provided via LocalViewModelStoreOwner"),
     key: String? = null,
     extras: CreationExtras = defaultExtras(viewModelStoreOwner),
     scope: Scope = currentKoinScope(),

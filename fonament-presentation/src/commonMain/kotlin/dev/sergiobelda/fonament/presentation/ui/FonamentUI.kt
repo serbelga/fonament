@@ -23,7 +23,6 @@ import androidx.compose.ui.Modifier
  * Represents the base class for a UI Node (Screen, Dialog, ...).
  */
 abstract class FonamentUI<U : FonamentUIState> {
-
     protected abstract val content: FonamentContent<U, *>
 
     @Composable
@@ -42,8 +41,7 @@ abstract class FonamentUI<U : FonamentUIState> {
         )
     }
 
-    override fun equals(other: Any?): Boolean =
-        other is FonamentUI<*> && content == other.content
+    override fun equals(other: Any?): Boolean = other is FonamentUI<*> && content == other.content
 
     override fun hashCode(): Int = content.hashCode()
 }

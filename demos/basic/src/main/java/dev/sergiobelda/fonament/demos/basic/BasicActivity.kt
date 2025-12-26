@@ -25,7 +25,6 @@ import dev.sergiobelda.fonament.samples.SampleScreen
 import dev.sergiobelda.fonament.samples.SampleViewModel
 
 class BasicActivity : ComponentActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()

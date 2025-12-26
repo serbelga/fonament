@@ -42,48 +42,52 @@ data class SampleContentState(
     val coroutineScope: CoroutineScope,
     val initialShowBottomSheet: Boolean = false,
 ) : FonamentContentState {
-
     var showBottomSheet by mutableStateOf(initialShowBottomSheet)
         private set
 
     override fun handleEvent(event: FonamentEvent) {
         when (event) {
-            SampleEvent.OpenBottomSheet -> { showBottomSheet = true }
+            SampleEvent.OpenBottomSheet -> {
+                showBottomSheet = true
+            }
 
-            SampleEvent.DismissBottomSheet -> { showBottomSheet = false }
+            SampleEvent.DismissBottomSheet -> {
+                showBottomSheet = false
+            }
 
             SampleEvent.CloseBottomSheet -> {
-                coroutineScope.launch {
-                    sheetState.hide()
-                }.invokeOnCompletion {
-                    if (!sheetState.isVisible) {
-                        showBottomSheet = false
+                coroutineScope
+                    .launch {
+                        sheetState.hide()
+                    }.invokeOnCompletion {
+                        if (!sheetState.isVisible) {
+                            showBottomSheet = false
+                        }
                     }
-                }
             }
         }
     }
 
     companion object {
-
         fun saver(
             lazyListState: LazyListState,
             sheetState: SheetState,
             coroutineScope: CoroutineScope,
-        ): Saver<SampleContentState, Boolean> = Saver(
-            save = {
-                it.showBottomSheet
-            },
-            restore = {
-                SampleContentState(
-                    lazyListState = lazyListState,
-                    sheetState = sheetState,
-                    coroutineScope = coroutineScope,
-                ).apply {
-                    showBottomSheet = it
-                }
-            },
-        )
+        ): Saver<SampleContentState, Boolean> =
+            Saver(
+                save = {
+                    it.showBottomSheet
+                },
+                restore = {
+                    SampleContentState(
+                        lazyListState = lazyListState,
+                        sheetState = sheetState,
+                        coroutineScope = coroutineScope,
+                    ).apply {
+                        showBottomSheet = it
+                    }
+                },
+            )
     }
 }
 
@@ -96,11 +100,12 @@ fun rememberSampleContentState(
     initialShowBottomSheet: Boolean = false,
 ): SampleContentState =
     rememberSaveable(
-        saver = SampleContentState.saver(
-            lazyListState = lazyListState,
-            sheetState = sheetState,
-            coroutineScope = coroutineScope,
-        ),
+        saver =
+            SampleContentState.saver(
+                lazyListState = lazyListState,
+                sheetState = sheetState,
+                coroutineScope = coroutineScope,
+            ),
     ) {
         SampleContentState(
             lazyListState = lazyListState,

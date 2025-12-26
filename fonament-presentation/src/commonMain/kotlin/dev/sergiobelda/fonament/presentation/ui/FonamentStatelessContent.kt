@@ -24,10 +24,8 @@ import androidx.compose.ui.Modifier
  * and [FonamentContentState] to render its content.
  */
 abstract class FonamentStatelessContent : FonamentContent<NoUIState, NoContentState>() {
-
     @Composable
-    override fun createContentState(uiState: NoUIState): NoContentState =
-        NoContentState
+    override fun createContentState(uiState: NoUIState): NoContentState = NoContentState
 
     @Composable
     operator fun invoke(

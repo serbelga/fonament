@@ -32,7 +32,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data object HomeContent : FonamentStatelessContent() {
-
     @Composable
     override fun Content(
         uiState: NoUIState,
@@ -40,16 +39,18 @@ data object HomeContent : FonamentStatelessContent() {
         modifier: Modifier,
     ) {
         Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(MaterialTheme.colorScheme.primaryContainer),
+            modifier =
+                Modifier
+                    .fillMaxSize()
+                    .background(MaterialTheme.colorScheme.primaryContainer),
         ) {
             Button(
                 onClick = {
                     onEvent(HomeNavigationEvent.NavigateToDetails)
                 },
-                modifier = Modifier
-                    .align(Alignment.Center),
+                modifier =
+                    Modifier
+                        .align(Alignment.Center),
             ) {
                 Text("Navigate to Details")
             }

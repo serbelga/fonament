@@ -27,8 +27,8 @@ import androidx.lifecycle.ViewModel
  */
 abstract class FonamentViewModel<U : FonamentUIState>(
     initialUIState: U,
-) : ViewModel(), FonamentEventHandler {
-
+) : ViewModel(),
+    FonamentEventHandler {
     var uiState: U by mutableStateOf(initialUIState)
         private set
 

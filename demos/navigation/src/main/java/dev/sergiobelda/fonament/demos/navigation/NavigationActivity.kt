@@ -30,7 +30,6 @@ import dev.sergiobelda.fonament.demos.navigation.home.homeNavigationEventHandler
 import dev.sergiobelda.fonament.presentation.navigation.NavigationNode
 
 class NavigationActivity : ComponentActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -42,20 +41,22 @@ class NavigationActivity : ComponentActivity() {
             ) {
                 composable<HomeContent> {
                     HomeContent.NavigationNode(
-                        navigationEventHandler = homeNavigationEventHandler(
-                            navigateToDetails = {
-                                navController.navigate(DetailsContent)
-                            },
-                        ),
+                        navigationEventHandler =
+                            homeNavigationEventHandler(
+                                navigateToDetails = {
+                                    navController.navigate(DetailsContent)
+                                },
+                            ),
                     )
                 }
                 composable<DetailsContent> {
                     DetailsContent.NavigationNode(
-                        navigationEventHandler = detailsNavigationEventHandler(
-                            navigateBack = {
-                                navController.popBackStack()
-                            },
-                        ),
+                        navigationEventHandler =
+                            detailsNavigationEventHandler(
+                                navigateBack = {
+                                    navController.popBackStack()
+                                },
+                            ),
                     )
                 }
             }

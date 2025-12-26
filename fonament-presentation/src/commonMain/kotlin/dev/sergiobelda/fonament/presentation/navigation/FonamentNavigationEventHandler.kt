@@ -20,7 +20,6 @@ package dev.sergiobelda.fonament.presentation.navigation
  * A functional interface for handling [FonamentNavigationEvent]s.
  */
 fun interface FonamentNavigationEventHandler<N : FonamentNavigationEvent> {
-
     /**
      * Handles the given [event].
      */

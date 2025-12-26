@@ -29,7 +29,6 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class HiltBasicActivity : ComponentActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -42,4 +41,6 @@ class HiltBasicActivity : ComponentActivity() {
 }
 
 @HiltViewModel
-class SampleViewModelV3 @Inject constructor() : SampleViewModel()
+class SampleViewModelV3
+    @Inject
+    constructor() : SampleViewModel()

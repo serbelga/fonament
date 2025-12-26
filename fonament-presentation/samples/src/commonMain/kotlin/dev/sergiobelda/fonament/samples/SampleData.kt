@@ -18,10 +18,11 @@ package dev.sergiobelda.fonament.samples
 
 import kotlinx.collections.immutable.toPersistentList
 
-internal val sampleItemModels = List(50) {
-    SampleItemModel(
-        index = it,
-        text = "Item $it",
-        checked = it % 5 == 0,
-    )
-}.toPersistentList()
+internal val sampleItemModels =
+    List(50) {
+        SampleItemModel(
+            index = it,
+            text = "Item $it",
+            checked = it % 5 == 0,
+        )
+    }.toPersistentList()

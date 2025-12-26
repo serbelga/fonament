@@ -20,7 +20,6 @@ package dev.sergiobelda.fonament.presentation.ui
  * A functional interface for handling [FonamentEvent]s.
  */
 fun interface FonamentEventHandler {
-
     /**
      * Handles the given [event].
      */

@@ -25,10 +25,11 @@ import androidx.compose.ui.tooling.preview.Preview
 @Composable
 fun SampleContentPreview() {
     SampleContent(
-        uiState = SampleUIState(
-            list = sampleItemModels,
-            counter = 0,
-        ),
+        uiState =
+            SampleUIState(
+                list = sampleItemModels,
+                counter = 0,
+            ),
     )
 }
 
@@ -37,15 +38,18 @@ fun SampleContentPreview() {
 @Composable
 fun SampleContentPreview2() {
     SampleContent(
-        uiState = SampleUIState(
-            list = sampleItemModels,
-            counter = 12,
-        ),
-        contentState = rememberSampleContentState(
-            sheetState = rememberStandardBottomSheetState(
-                skipHiddenState = false,
+        uiState =
+            SampleUIState(
+                list = sampleItemModels,
+                counter = 12,
             ),
-            initialShowBottomSheet = true,
-        ),
+        contentState =
+            rememberSampleContentState(
+                sheetState =
+                    rememberStandardBottomSheetState(
+                        skipHiddenState = false,
+                    ),
+                initialShowBottomSheet = true,
+            ),
     )
 }
