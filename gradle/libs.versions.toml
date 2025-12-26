@@ -19,7 +19,7 @@ kotlin = "2.2.21"
 kotlinCollectionsImmutable = "0.4.0"
 ksp = "2.3.4"
 ktlint = "1.8.0"
-spotless = "8.0.0"
+spotless = "8.1.0"
 navigation = "2.9.6"
 vanniktechMavenPublish = "0.35.0"
 
