@@ -3,9 +3,9 @@ plugins {
     alias(libs.plugins.google.dagger.hilt)
     alias(libs.plugins.google.ksp)
     alias(libs.plugins.jetbrains.kotlin.android)
-    alias(libs.plugins.jetbrains.kotlin.compose)
-    id("dev.sergiobelda.gradle.spotless")
-    kotlin("plugin.serialization")
+    alias(libs.plugins.jetbrains.kotlin.composeCompiler)
+    alias(libs.plugins.jetbrains.kotlin.serialization)
+    alias(libs.plugins.sergiobelda.convention.spotless)
 }
 
 android {
@@ -43,7 +43,7 @@ dependencies {
     implementation(projects.fonamentPresentation)
     implementation(projects.fonamentPresentation.samples)
 
-    implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.activityCompose)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtimeKtx)
     implementation(libs.androidx.lifecycle.viewmodelCompose)
@@ -57,7 +57,7 @@ dependencies {
 
     implementation(libs.androidx.hilt.lifecycle.viewmodelCompose)
 
-    implementation(libs.jetbrains.kotlinx.collectionsImmutable)
+    implementation(libs.jetbrains.kotlin.collections.immutable)
 
     implementation(libs.google.dagger.hilt)
     ksp(libs.google.dagger.hiltCompiler)
