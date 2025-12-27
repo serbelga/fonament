@@ -1,15 +1,12 @@
 plugins {
     alias(libs.plugins.android.library)
-    alias(libs.plugins.jetbrains.compose.multiplatform)
+    alias(libs.plugins.jetbrains.composeMultiplatform)
     alias(libs.plugins.jetbrains.dokka)
-    alias(libs.plugins.jetbrains.kotlin.compose)
+    alias(libs.plugins.jetbrains.kotlin.composeCompiler)
     alias(libs.plugins.jetbrains.kotlin.multiplatform)
-    alias(libs.plugins.vanniktech.maven.publish)
-    id("dev.sergiobelda.gradle.spotless")
+    alias(libs.plugins.vanniktech.mavenpublish)
+    alias(libs.plugins.sergiobelda.convention.spotless)
 }
-
-group = "dev.sergiobelda.fonament"
-version = libs.versions.fonament.get()
 
 kotlin {
     androidTarget()
@@ -29,7 +26,7 @@ kotlin {
 
                 api(project.dependencies.platform(libs.koin.bom))
                 api(libs.koin.core)
-                api(libs.koin.compose.viewmodel)
+                api(libs.koin.composeViewmodel)
 
                 implementation(compose.ui)
                 implementation(libs.jetbrains.androidx.lifecycle.viewmodelCompose)
