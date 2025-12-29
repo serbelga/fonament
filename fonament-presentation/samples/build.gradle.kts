@@ -1,9 +1,9 @@
 plugins {
-    alias(libs.plugins.jetbrains.kotlin.multiplatform)
-    alias(libs.plugins.android.library)
-    alias(libs.plugins.jetbrains.composeMultiplatform)
-    alias(libs.plugins.jetbrains.kotlin.composeCompiler)
-    alias(libs.plugins.sergiobelda.convention.spotless)
+    alias(deps.plugins.jetbrains.kotlin.multiplatform)
+    alias(deps.plugins.android.library)
+    alias(deps.plugins.jetbrains.composeMultiplatform)
+    alias(deps.plugins.jetbrains.kotlin.composeCompiler)
+    alias(deps.plugins.sergiobelda.convention.spotless)
 }
 
 kotlin {
@@ -22,19 +22,17 @@ kotlin {
             dependencies {
                 implementation(projects.fonamentPresentation)
 
-
-                implementation(compose.foundation)
-                implementation(compose.material3)
-                implementation(compose.materialIconsExtended)
-                implementation(compose.ui)
-                implementation(libs.jetbrains.androidx.lifecycle.viewmodelCompose)
-
-                implementation(libs.jetbrains.kotlin.collections.immutable)
+                implementation(deps.jetbrains.androidx.lifecycle.viewmodelCompose)
+                implementation(deps.jetbrains.compose.foundation)
+                implementation(deps.jetbrains.compose.material3)
+                implementation(deps.jetbrains.compose.materialIconsExtended)
+                implementation(deps.jetbrains.compose.ui)
+                implementation(deps.jetbrains.kotlinx.collections.immutable)
             }
         }
         val androidMain by getting {
             dependencies {
-                implementation(libs.androidx.core.ktx)
+                implementation(deps.androidx.core.ktx)
             }
         }
     }
@@ -42,10 +40,10 @@ kotlin {
 
 android {
     namespace = "dev.sergiobelda.fonament.samples"
-    compileSdk = libs.versions.androidCompileSdk.get().toInt()
+    compileSdk = deps.versions.androidCompileSdk.get().toInt()
 
     defaultConfig {
-        minSdk = libs.versions.androidMinSdk.get().toInt()
+        minSdk = deps.versions.androidMinSdk.get().toInt()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -56,7 +54,7 @@ android {
     }
 
     dependencies {
-        implementation(compose.preview)
-        debugImplementation(compose.uiTooling)
+        implementation(deps.jetbrains.compose.uiToolingPreview)
+        debugImplementation(deps.jetbrains.compose.uiTooling)
     }
 }
