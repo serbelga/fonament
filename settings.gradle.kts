@@ -9,7 +9,6 @@ pluginManagement {
         }
         mavenCentral()
         gradlePluginPortal()
-        mavenLocal()
     }
 }
 dependencyResolutionManagement {
@@ -17,11 +16,10 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        mavenLocal()
     }
     versionCatalogs {
         create("libs") {
-            from("dev.sergiobelda.projectconfig:dependencies:0.0.1")
+            from("dev.sergiobelda.projectconfig.dependencies:dependencies:0.0.3")
         }
     }
 }
