@@ -61,4 +61,8 @@ dependencies {
 
     implementation(libs.google.dagger.hilt)
     ksp(libs.google.dagger.hiltCompiler)
+
+    // Workaround for https://github.com/google/dagger/issues/5059
+    // TODO: Remove this line
+    ksp("org.jetbrains.kotlin:kotlin-metadata-jvm:2.3.0")
 }
