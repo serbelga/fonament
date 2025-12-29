@@ -1,5 +1,4 @@
 pluginManagement {
-    includeBuild("gradle/build-logic")
     repositories {
         google {
             content {
@@ -17,6 +16,11 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+    }
+    versionCatalogs {
+        create("libs") {
+            from("dev.sergiobelda.projectconfig.dependencies:dependencies:0.0.3")
+        }
     }
 }
 

@@ -1,13 +1,10 @@
 plugins {
     alias(libs.plugins.jetbrains.kotlin.multiplatform)
     alias(libs.plugins.android.library)
-    alias(libs.plugins.jetbrains.compose.multiplatform)
-    alias(libs.plugins.jetbrains.kotlin.compose)
-    id("dev.sergiobelda.gradle.spotless")
+    alias(libs.plugins.jetbrains.composeMultiplatform)
+    alias(libs.plugins.jetbrains.kotlin.composeCompiler)
+    alias(libs.plugins.sergiobelda.convention.spotless)
 }
-
-group = "dev.sergiobelda.fonament.samples"
-version = libs.versions.fonament.get()
 
 kotlin {
     androidTarget()
@@ -32,7 +29,7 @@ kotlin {
                 implementation(compose.ui)
                 implementation(libs.jetbrains.androidx.lifecycle.viewmodelCompose)
 
-                implementation(libs.jetbrains.kotlinx.collectionsImmutable)
+                implementation(libs.jetbrains.kotlin.collections.immutable)
             }
         }
         val androidMain by getting {

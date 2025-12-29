@@ -1,8 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-    alias(libs.plugins.jetbrains.kotlin.compose)
-    id("dev.sergiobelda.gradle.spotless")
+    alias(libs.plugins.jetbrains.kotlin.composeCompiler)
+    alias(libs.plugins.sergiobelda.convention.spotless)
 }
 
 android {
@@ -46,7 +46,7 @@ dependencies {
     implementation(projects.fonamentPresentation)
     implementation(projects.fonamentPresentation.samples)
 
-    implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.activityCompose)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtimeKtx)
 
@@ -56,5 +56,5 @@ dependencies {
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.toolingPreview)
 
-    implementation(libs.jetbrains.kotlinx.collectionsImmutable)
+    implementation(libs.jetbrains.kotlin.collections.immutable)
 }
