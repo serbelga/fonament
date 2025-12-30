@@ -8,12 +8,12 @@ plugins {
 
 android {
     namespace = "dev.sergiobelda.fonament.demos.navigation"
-    compileSdk = deps.versions.androidCompileSdk.get().toInt()
+    compileSdk = deps.versions.android.compileSdk.get().toInt()
 
     defaultConfig {
         applicationId = "dev.sergiobelda.fonament.demos.navigation"
-        minSdk = deps.versions.androidMinSdk.get().toInt()
-        targetSdk = deps.versions.androidTargetSdk.get().toInt()
+        minSdk = deps.versions.android.minSdk.get().toInt()
+        targetSdk = deps.versions.android.targetSdk.get().toInt()
         versionCode = 1
         versionName = "1.0"
 

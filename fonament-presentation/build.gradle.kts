@@ -1,6 +1,6 @@
 plugins {
     alias(deps.plugins.android.library)
-    alias(deps.plugins.jetbrains.composeMultiplatform)
+    alias(deps.plugins.jetbrains.compose)
     alias(deps.plugins.jetbrains.dokka)
     alias(deps.plugins.jetbrains.kotlin.composeCompiler)
     alias(deps.plugins.jetbrains.kotlin.multiplatform)
@@ -37,10 +37,10 @@ kotlin {
 
 android {
     namespace = "dev.sergiobelda.fonament"
-    compileSdk = deps.versions.androidCompileSdk.get().toInt()
+    compileSdk = deps.versions.android.compileSdk.get().toInt()
 
     defaultConfig {
-        minSdk = deps.versions.androidMinSdk.get().toInt()
+        minSdk = deps.versions.android.minSdk.get().toInt()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")

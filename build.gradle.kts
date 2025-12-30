@@ -3,7 +3,7 @@ plugins {
     alias(deps.plugins.android.library) apply false
     alias(deps.plugins.google.dagger.hilt) apply false
     alias(deps.plugins.google.ksp) apply false
-    alias(deps.plugins.jetbrains.composeMultiplatform) apply false
+    alias(deps.plugins.jetbrains.compose) apply false
     alias(deps.plugins.jetbrains.dokka) apply false
     alias(deps.plugins.jetbrains.kotlin.android) apply false
     alias(deps.plugins.jetbrains.kotlin.composeCompiler) apply false
