@@ -1,19 +1,19 @@
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.jetbrains.kotlin.android)
-    alias(libs.plugins.jetbrains.kotlin.composeCompiler)
-    alias(libs.plugins.jetbrains.kotlin.serialization)
-    alias(libs.plugins.sergiobelda.convention.spotless)
+    alias(deps.plugins.android.application)
+    alias(deps.plugins.jetbrains.kotlin.android)
+    alias(deps.plugins.jetbrains.kotlin.composeCompiler)
+    alias(deps.plugins.jetbrains.kotlin.serialization)
+    alias(deps.plugins.sergiobelda.convention.spotless)
 }
 
 android {
     namespace = "dev.sergiobelda.fonament.demos.navigation"
-    compileSdk = libs.versions.androidCompileSdk.get().toInt()
+    compileSdk = deps.versions.android.compileSdk.get().toInt()
 
     defaultConfig {
         applicationId = "dev.sergiobelda.fonament.demos.navigation"
-        minSdk = libs.versions.androidMinSdk.get().toInt()
-        targetSdk = libs.versions.androidTargetSdk.get().toInt()
+        minSdk = deps.versions.android.minSdk.get().toInt()
+        targetSdk = deps.versions.android.targetSdk.get().toInt()
         versionCode = 1
         versionName = "1.0"
 
@@ -41,17 +41,17 @@ dependencies {
     implementation(projects.fonamentPresentation)
     implementation(projects.fonamentPresentation.samples)
 
-    implementation(libs.androidx.activityCompose)
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtimeKtx)
-    implementation(libs.androidx.lifecycle.viewmodelCompose)
-    implementation(libs.androidx.navigation.compose)
+    implementation(deps.androidx.activityCompose)
+    implementation(deps.androidx.core.ktx)
+    implementation(deps.androidx.lifecycle.runtimeKtx)
+    implementation(deps.androidx.lifecycle.viewmodelCompose)
+    implementation(deps.androidx.navigation.compose)
 
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.compose.material3)
-    implementation(libs.androidx.compose.ui)
-    implementation(libs.androidx.compose.ui.graphics)
-    implementation(libs.androidx.compose.ui.toolingPreview)
+    implementation(platform(deps.androidx.compose.bom))
+    implementation(deps.androidx.compose.material3)
+    implementation(deps.androidx.compose.ui)
+    implementation(deps.androidx.compose.uiGraphics)
+    implementation(deps.androidx.compose.uiToolingPreview)
 
-    implementation(libs.jetbrains.kotlin.collections.immutable)
+    implementation(deps.jetbrains.kotlinx.collections.immutable)
 }

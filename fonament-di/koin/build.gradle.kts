@@ -1,11 +1,11 @@
 plugins {
-    alias(libs.plugins.android.library)
-    alias(libs.plugins.jetbrains.composeMultiplatform)
-    alias(libs.plugins.jetbrains.dokka)
-    alias(libs.plugins.jetbrains.kotlin.composeCompiler)
-    alias(libs.plugins.jetbrains.kotlin.multiplatform)
-    alias(libs.plugins.vanniktech.mavenpublish)
-    alias(libs.plugins.sergiobelda.convention.spotless)
+    alias(deps.plugins.android.library)
+    alias(deps.plugins.jetbrains.compose)
+    alias(deps.plugins.jetbrains.dokka)
+    alias(deps.plugins.jetbrains.kotlin.composeCompiler)
+    alias(deps.plugins.jetbrains.kotlin.multiplatform)
+    alias(deps.plugins.vanniktech.mavenpublish)
+    alias(deps.plugins.sergiobelda.convention.spotless)
 }
 
 kotlin {
@@ -24,17 +24,17 @@ kotlin {
             dependencies {
                 api(projects.fonamentPresentation)
 
-                api(project.dependencies.platform(libs.koin.bom))
-                api(libs.koin.core)
-                api(libs.koin.composeViewmodel)
+                api(project.dependencies.platform(deps.koin.bom))
+                api(deps.koin.core)
+                api(deps.koin.composeViewmodel)
 
-                implementation(compose.ui)
-                implementation(libs.jetbrains.androidx.lifecycle.viewmodelCompose)
+                implementation(deps.jetbrains.androidx.lifecycle.viewmodelCompose)
+                implementation(deps.jetbrains.compose.ui)
             }
         }
         val androidMain by getting {
             dependencies {
-                implementation(libs.androidx.core.ktx)
+                implementation(deps.androidx.core.ktx)
             }
         }
     }
@@ -42,10 +42,10 @@ kotlin {
 
 android {
     namespace = "dev.sergiobelda.fonament.di.koin"
-    compileSdk = libs.versions.androidCompileSdk.get().toInt()
+    compileSdk = deps.versions.android.compileSdk.get().toInt()
 
     defaultConfig {
-        minSdk = libs.versions.androidMinSdk.get().toInt()
+        minSdk = deps.versions.android.minSdk.get().toInt()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
