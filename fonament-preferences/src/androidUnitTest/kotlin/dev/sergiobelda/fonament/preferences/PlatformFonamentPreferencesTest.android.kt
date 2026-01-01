@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Sergio Belda
+ * Copyright 2026 Sergio Belda
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,14 +17,23 @@
 package dev.sergiobelda.fonament.preferences
 
 import android.content.Context
+import io.mockk.every
+import io.mockk.mockk
+import java.io.File
 
-actual class FonamentPreferencesFactory(
-    private val context: Context,
-) {
-    actual fun create(
-        name: String,
-    ): FonamentPreferences =
-        FonamentPreferences(
-            dataStore = FonamentPreferencesDataStoreSingleton(context)[name],
-        )
+actual open class PlatformFonamentPreferencesTest {
+    val context: Context = mockk<Context>(relaxed = true)
+
+    actual var factory: FonamentPreferencesFactory = FonamentPreferencesFactory(context)
+
+    actual fun setUp() {
+        every { context.filesDir } returns File("build/filesDir/")
+    }
+
+    actual fun clearPreferences(fileName: String) {
+        val file = context.filesDir.resolve(fileName)
+        if (file.exists()) {
+            file.delete()
+        }
+    }
 }

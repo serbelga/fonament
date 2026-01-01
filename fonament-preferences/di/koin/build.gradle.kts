@@ -1,8 +1,6 @@
 plugins {
     alias(deps.plugins.android.library)
-    alias(deps.plugins.jetbrains.compose)
     alias(deps.plugins.jetbrains.dokka)
-    alias(deps.plugins.jetbrains.kotlin.composeCompiler)
     alias(deps.plugins.jetbrains.kotlin.multiplatform)
     alias(deps.plugins.vanniktech.mavenpublish)
     alias(deps.plugins.sergiobelda.convention.spotless)
@@ -10,34 +8,26 @@ plugins {
 
 kotlin {
     androidTarget()
-    jvm("desktop")
+    jvm()
     iosX64()
     iosArm64()
     iosSimulatorArm64()
-    js(IR) {
-        browser()
-        binaries.executable()
-    }
 
     sourceSets {
         commonMain.dependencies {
-            api(projects.fonamentPresentation)
+            implementation(projects.fonamentPreferences)
 
-            api(project.dependencies.platform(deps.koin.bom))
-            api(deps.koin.core)
-            api(deps.koin.composeViewmodel)
-
-            implementation(deps.jetbrains.androidx.lifecycle.viewmodelCompose)
-            implementation(deps.jetbrains.compose.ui)
+            implementation(project.dependencies.platform(deps.koin.bom))
+            implementation(deps.koin.core)
         }
         androidMain.dependencies {
-            implementation(deps.androidx.core.ktx)
+            implementation(deps.koin.android)
         }
     }
 }
 
 android {
-    namespace = "dev.sergiobelda.fonament.di.koin"
+    namespace = "dev.sergiobelda.fonament.preferences.di.koin"
     compileSdk = deps.versions.android.compileSdk.get().toInt()
 
     defaultConfig {
@@ -54,7 +44,7 @@ android {
 
 mavenPublishing {
     coordinates(
-        artifactId = "fonament-di-koin",
+        artifactId = "fonament-preferences-di-koin",
     )
 
     publishToMavenCentral(true)

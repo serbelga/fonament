@@ -33,56 +33,56 @@ import kotlinx.coroutines.flow.map
 class FonamentPreferences(
     private val dataStore: DataStore<Preferences>,
 ) {
-    suspend fun set(
+    suspend operator fun set(
         key: String,
         value: Int,
     ) {
         set(intPreferencesKey(key), value)
     }
 
-    suspend fun set(
+    suspend operator fun set(
         key: String,
         value: Double,
     ) {
         set(doublePreferencesKey(key), value)
     }
 
-    suspend fun set(
+    suspend operator fun set(
         key: String,
         value: String,
     ) {
         set(stringPreferencesKey(key), value)
     }
 
-    suspend fun set(
+    suspend operator fun set(
         key: String,
         value: Boolean,
     ) {
         set(booleanPreferencesKey(key), value)
     }
 
-    suspend fun set(
+    suspend operator fun set(
         key: String,
         value: Float,
     ) {
         set(floatPreferencesKey(key), value)
     }
 
-    suspend fun set(
+    suspend operator fun set(
         key: String,
         value: Long,
     ) {
         set(longPreferencesKey(key), value)
     }
 
-    suspend fun set(
+    suspend operator fun set(
         key: String,
         value: Set<String>,
     ) {
         set(stringSetPreferencesKey(key), value)
     }
 
-    suspend fun set(
+    suspend operator fun set(
         key: String,
         value: ByteArray,
     ) {

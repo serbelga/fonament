@@ -8,7 +8,7 @@ plugins {
 
 kotlin {
     androidTarget()
-    jvm("desktop")
+    jvm()
     iosX64()
     iosArm64()
     iosSimulatorArm64()
@@ -16,6 +16,15 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(deps.androidx.datastore.preferences)
+        }
+        commonTest.dependencies {
+            implementation(kotlin("test"))
+            implementation(deps.jetbrains.kotlinx.coroutines.test)
+            implementation(libs.mockk.common)
+        }
+        androidUnitTest.dependencies {
+            implementation(deps.junit)
+            implementation(libs.mockk.mockk)
         }
     }
 }

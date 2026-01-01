@@ -20,17 +20,13 @@ kotlin {
     }
 
     sourceSets {
-        val commonMain by getting {
-            dependencies {
-                implementation(deps.jetbrains.compose.foundation)
-                implementation(deps.jetbrains.compose.ui)
-                implementation(deps.androidx.lifecycle.viewmodel)
-            }
+        commonMain.dependencies {
+            implementation(deps.jetbrains.compose.foundation)
+            implementation(deps.jetbrains.compose.ui)
+            implementation(deps.androidx.lifecycle.viewmodel)
         }
-        val androidMain by getting {
-            dependencies {
-                implementation(deps.androidx.core.ktx)
-            }
+        androidMain.dependencies {
+            implementation(deps.androidx.core.ktx)
         }
     }
 }
