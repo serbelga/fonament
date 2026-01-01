@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Sergio Belda
+ * Copyright 2026 Sergio Belda
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,31 +19,26 @@ package dev.sergiobelda.fonament.preferences
 import kotlinx.cinterop.ExperimentalForeignApi
 import platform.Foundation.NSDocumentDirectory
 import platform.Foundation.NSFileManager
-import platform.Foundation.NSURL
 import platform.Foundation.NSUserDomainMask
 
-actual object FonamentPreferencesFactory {
-    @OptIn(ExperimentalForeignApi::class)
-    private val documentDirectory: NSURL? =
-        NSFileManager.defaultManager.URLForDirectory(
-            directory = NSDocumentDirectory,
-            inDomain = NSUserDomainMask,
-            appropriateForURL = null,
-            create = false,
-            error = null,
-        )
+actual open class PlatformFonamentPreferencesTest actual constructor() {
+    actual var factory: FonamentPreferencesFactory = FonamentPreferencesFactory
+
+    actual fun setUp() = Unit
 
     @OptIn(ExperimentalForeignApi::class)
-    actual fun create(
-        name: String,
-    ): FonamentPreferences =
-        FonamentPreferences(
-            dataStore =
-                createDataStore(
-                    producePath = {
-                        documentDirectory?.path.orEmpty() +
-                            "/${name.toPreferencesDataStoreFileName()}"
-                    },
-                ),
-        )
+    actual fun clearPreferences(fileName: String) {
+        val manager = NSFileManager.Companion.defaultManager
+        val path =
+            manager.URLForDirectory(
+                directory = NSDocumentDirectory,
+                inDomain = NSUserDomainMask,
+                appropriateForURL = null,
+                create = false,
+                error = null,
+            )?.path.orEmpty() + "/$fileName"
+        if (manager.fileExistsAtPath(path)) {
+            manager.removeItemAtPath(path, error = null)
+        }
+    }
 }

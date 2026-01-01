@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Sergio Belda
+ * Copyright 2026 Sergio Belda
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,15 +16,14 @@
 
 package dev.sergiobelda.fonament.preferences
 
-import android.content.Context
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.PreferenceDataStoreFactory
+import androidx.datastore.preferences.core.Preferences
+import okio.Path.Companion.toPath
 
-actual class FonamentPreferencesFactory(
-    private val context: Context,
-) {
-    actual fun create(
-        name: String,
-    ): FonamentPreferences =
-        FonamentPreferences(
-            dataStore = FonamentPreferencesDataStoreSingleton(context)[name],
-        )
-}
+internal fun createDataStore(
+    producePath: () -> String,
+): DataStore<Preferences> =
+    PreferenceDataStoreFactory.createWithPath(
+        produceFile = { producePath.invoke().toPath() },
+    )

@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Sergio Belda
+ * Copyright 2026 Sergio Belda
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,17 +14,19 @@
  * limitations under the License.
  */
 
-package dev.sergiobelda.fonament.preferences
+package dev.sergiobelda.fonament.preferences.di.koin
 
-import android.content.Context
+import dev.sergiobelda.fonament.preferences.FonamentPreferences
+import dev.sergiobelda.fonament.preferences.FonamentPreferencesFactory
+import org.koin.core.definition.KoinDefinition
+import org.koin.core.module.KoinDslMarker
+import org.koin.core.module.Module
 
-actual class FonamentPreferencesFactory(
-    private val context: Context,
-) {
-    actual fun create(
-        name: String,
-    ): FonamentPreferences =
-        FonamentPreferences(
-            dataStore = FonamentPreferencesDataStoreSingleton(context)[name],
-        )
-}
+@KoinDslMarker
+actual fun Module.fonamentPreferences(
+    name: String,
+): KoinDefinition<FonamentPreferences> =
+    fonamentPreferences(
+        factory = { FonamentPreferencesFactory },
+        name = name,
+    )

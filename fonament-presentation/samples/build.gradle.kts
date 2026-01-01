@@ -18,22 +18,18 @@ kotlin {
     }
 
     sourceSets {
-        val commonMain by getting {
-            dependencies {
-                implementation(projects.fonamentPresentation)
+        commonMain.dependencies {
+            implementation(projects.fonamentPresentation)
 
-                implementation(deps.jetbrains.androidx.lifecycle.viewmodelCompose)
-                implementation(deps.jetbrains.compose.foundation)
-                implementation(deps.jetbrains.compose.material3)
-                implementation(deps.jetbrains.compose.materialIconsExtended)
-                implementation(deps.jetbrains.compose.ui)
-                implementation(deps.jetbrains.kotlinx.collections.immutable)
-            }
+            implementation(deps.jetbrains.androidx.lifecycle.viewmodelCompose)
+            implementation(deps.jetbrains.compose.foundation)
+            implementation(deps.jetbrains.compose.material3)
+            implementation(deps.jetbrains.compose.materialIconsExtended)
+            implementation(deps.jetbrains.compose.ui)
+            implementation(deps.jetbrains.kotlinx.collections.immutable)
         }
-        val androidMain by getting {
-            dependencies {
-                implementation(deps.androidx.core.ktx)
-            }
+        androidMain.dependencies {
+            implementation(deps.androidx.core.ktx)
         }
     }
 }

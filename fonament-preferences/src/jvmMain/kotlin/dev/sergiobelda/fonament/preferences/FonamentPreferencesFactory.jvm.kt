@@ -18,14 +18,9 @@ package dev.sergiobelda.fonament.preferences
 
 actual object FonamentPreferencesFactory {
     actual fun create(
-        fileName: String,
+        name: String,
     ): FonamentPreferences =
         FonamentPreferences(
-            dataStore =
-                createDataStore(
-                    producePath = {
-                        "./$fileName"
-                    },
-                ),
+            dataStore = FonamentPreferencesDataStoreSingleton()[name],
         )
 }

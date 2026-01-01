@@ -16,22 +16,8 @@
 
 package dev.sergiobelda.fonament.preferences
 
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.PreferenceDataStoreFactory
-import androidx.datastore.preferences.core.Preferences
-import okio.Path.Companion.toPath
-
-internal fun createDataStore(
-    producePath: () -> String,
-): DataStore<Preferences> =
-    PreferenceDataStoreFactory.createWithPath(
-        produceFile = { producePath.invoke().toPath() },
-    )
-
-expect object FonamentPreferencesFactory {
+expect class FonamentPreferencesFactory {
     fun create(
-        fileName: String = DEFAULT_PREFERENCES_FILE_NAME,
+        name: String = DEFAULT_FONAMENT_PREFERENCES_NAME,
     ): FonamentPreferences
 }
-
-private const val DEFAULT_PREFERENCES_FILE_NAME = "fonament_preferences.preferences_pb"

@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Sergio Belda
+ * Copyright 2026 Sergio Belda
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,15 +16,17 @@
 
 package dev.sergiobelda.fonament.preferences
 
-import android.content.Context
+import java.io.File
 
-actual class FonamentPreferencesFactory(
-    private val context: Context,
-) {
-    actual fun create(
-        name: String,
-    ): FonamentPreferences =
-        FonamentPreferences(
-            dataStore = FonamentPreferencesDataStoreSingleton(context)[name],
-        )
+actual open class PlatformFonamentPreferencesTest {
+    actual var factory: FonamentPreferencesFactory = FonamentPreferencesFactory
+
+    actual fun setUp() = Unit
+
+    actual fun clearPreferences(fileName: String) {
+        val file = File("./$fileName")
+        if (file.exists()) {
+            file.delete()
+        }
+    }
 }
