@@ -78,6 +78,22 @@ class FonamentPreferencesTest : PlatformFonamentPreferencesTest() {
             val result = fonamentPreferences.getFloat("test_float").firstOrNull()
             assertEquals(456.7f, result)
         }
+
+    @Test
+    fun `test set and get Long`() =
+        runTest {
+            fonamentPreferences["test_long"] = 78L
+            val result = fonamentPreferences.getLong("test_long").firstOrNull()
+            assertEquals(78L, result)
+        }
+
+    @Test
+    fun `test set and get StringSet`() =
+        runTest {
+            fonamentPreferences["test_string_set"] = setOf("test", "test", "a")
+            val result = fonamentPreferences.getStringSet("test_string_set").firstOrNull()
+            assertEquals(setOf("test", "a"), result)
+        }
 }
 
 private const val TEST_PREFERENCES_NAME = "test"

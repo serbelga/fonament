@@ -22,12 +22,17 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.core.definition.KoinDefinition
 import org.koin.core.module.KoinDslMarker
 import org.koin.core.module.Module
+import org.koin.core.qualifier.Qualifier
 
 @KoinDslMarker
 actual fun Module.fonamentPreferences(
     name: String,
+    qualifier: Qualifier?,
+    createdAtStart: Boolean,
 ): KoinDefinition<FonamentPreferences> =
     fonamentPreferences(
         factory = { FonamentPreferencesFactory(androidContext()) },
         name = name,
+        qualifier = qualifier,
+        createdAtStart = createdAtStart,
     )

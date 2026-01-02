@@ -1,9 +1,9 @@
 plugins {
     alias(deps.plugins.android.library)
-    alias(deps.plugins.jetbrains.dokka)
     alias(deps.plugins.jetbrains.kotlin.multiplatform)
     alias(deps.plugins.vanniktech.mavenpublish)
     alias(deps.plugins.sergiobelda.convention.spotless)
+    // alias(deps.plugins.jetbrains.dokka)
 }
 
 kotlin {
@@ -15,7 +15,7 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            implementation(projects.fonamentPreferences)
+            api(projects.fonamentPreferences)
 
             implementation(project.dependencies.platform(deps.koin.bom))
             implementation(deps.koin.core)
