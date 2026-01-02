@@ -22,20 +22,25 @@ import dev.sergiobelda.fonament.preferences.FonamentPreferencesFactory
 import org.koin.core.definition.KoinDefinition
 import org.koin.core.module.KoinDslMarker
 import org.koin.core.module.Module
-import org.koin.core.qualifier.named
+import org.koin.core.qualifier.Qualifier
 import org.koin.core.scope.Scope
 
 @KoinDslMarker
 expect fun Module.fonamentPreferences(
     name: String = DEFAULT_FONAMENT_PREFERENCES_NAME,
+    qualifier: Qualifier? = null,
+    createdAtStart: Boolean = false,
 ): KoinDefinition<FonamentPreferences>
 
 internal inline fun Module.fonamentPreferences(
     crossinline factory: Scope.() -> FonamentPreferencesFactory,
     name: String = DEFAULT_FONAMENT_PREFERENCES_NAME,
+    qualifier: Qualifier? = null,
+    createdAtStart: Boolean = false,
 ): KoinDefinition<FonamentPreferences> =
     single(
-        qualifier = named(name = name),
+        qualifier = qualifier,
+        createdAtStart = createdAtStart,
     ) {
         factory().create(name)
     }
