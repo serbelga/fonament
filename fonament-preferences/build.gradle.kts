@@ -20,11 +20,11 @@ kotlin {
         commonTest.dependencies {
             implementation(kotlin("test"))
             implementation(deps.jetbrains.kotlinx.coroutines.test)
-            implementation(libs.mockk.common)
+            implementation(deps.mockk.common)
         }
         androidUnitTest.dependencies {
             implementation(deps.junit)
-            implementation(libs.mockk.mockk)
+            implementation(deps.mockk.mockk)
         }
     }
 }
