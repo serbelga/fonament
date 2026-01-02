@@ -16,8 +16,7 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(deps.androidx.datastore.preferences)
-
-            implementation("co.touchlab:stately-concurrent-collections:2.1.0")
+            implementation(deps.touchlab.stately.concurrentCollections)
         }
         commonTest.dependencies {
             implementation(kotlin("test"))
