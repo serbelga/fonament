@@ -27,6 +27,8 @@ dependencyResolutionManagement {
 rootProject.name = "fonament-root"
 
 include(":fonament-di:koin")
+include(":fonament-preferences")
+include(":fonament-preferences:di:koin")
 include(":fonament-presentation")
 include(":fonament-presentation:samples")
 

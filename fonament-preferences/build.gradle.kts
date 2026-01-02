@@ -1,43 +1,37 @@
 plugins {
     alias(deps.plugins.android.library)
-    alias(deps.plugins.jetbrains.compose)
-    alias(deps.plugins.jetbrains.dokka)
-    alias(deps.plugins.jetbrains.kotlin.composeCompiler)
     alias(deps.plugins.jetbrains.kotlin.multiplatform)
     alias(deps.plugins.vanniktech.mavenpublish)
     alias(deps.plugins.sergiobelda.convention.spotless)
+    // alias(deps.plugins.jetbrains.dokka)
 }
 
 kotlin {
     androidTarget()
-    jvm("desktop")
+    jvm()
     iosX64()
     iosArm64()
     iosSimulatorArm64()
-    js(IR) {
-        browser()
-        binaries.executable()
-    }
 
     sourceSets {
         commonMain.dependencies {
-            api(projects.fonamentPresentation)
+            implementation(deps.androidx.datastore.preferences)
 
-            api(project.dependencies.platform(deps.koin.bom))
-            api(deps.koin.core)
-            api(deps.koin.composeViewmodel)
-
-            implementation(deps.jetbrains.androidx.lifecycle.viewmodelCompose)
-            implementation(deps.jetbrains.compose.ui)
+            implementation("co.touchlab:stately-concurrent-collections:2.1.0")
         }
-        androidMain.dependencies {
-            implementation(deps.androidx.core.ktx)
+        commonTest.dependencies {
+            implementation(kotlin("test"))
+            implementation(deps.jetbrains.kotlinx.coroutines.test)
+        }
+        androidUnitTest.dependencies {
+            implementation(deps.junit)
+            implementation(deps.mockk.mockk)
         }
     }
 }
 
 android {
-    namespace = "dev.sergiobelda.fonament.di.koin"
+    namespace = "dev.sergiobelda.fonament.preferences"
     compileSdk = deps.versions.android.compileSdk.get().toInt()
 
     defaultConfig {
@@ -53,10 +47,6 @@ android {
 }
 
 mavenPublishing {
-    coordinates(
-        artifactId = "fonament-di-koin",
-    )
-
     publishToMavenCentral(true)
 
     signAllPublications()
