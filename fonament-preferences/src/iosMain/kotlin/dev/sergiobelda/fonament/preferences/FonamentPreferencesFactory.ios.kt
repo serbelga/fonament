@@ -24,26 +24,10 @@ import platform.Foundation.NSUserDomainMask
 
 actual object FonamentPreferencesFactory {
     @OptIn(ExperimentalForeignApi::class)
-    private val documentDirectory: NSURL? =
-        NSFileManager.defaultManager.URLForDirectory(
-            directory = NSDocumentDirectory,
-            inDomain = NSUserDomainMask,
-            appropriateForURL = null,
-            create = false,
-            error = null,
-        )
-
-    @OptIn(ExperimentalForeignApi::class)
     actual fun create(
         name: String,
     ): FonamentPreferences =
         FonamentPreferences(
-            dataStore =
-                createDataStore(
-                    producePath = {
-                        documentDirectory?.path.orEmpty() +
-                            "/${name.toPreferencesDataStoreFileName()}"
-                    },
-                ),
+            dataStore = FonamentPreferencesDataStoreSingleton()[name],
         )
 }

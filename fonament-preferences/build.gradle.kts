@@ -16,11 +16,12 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(deps.androidx.datastore.preferences)
+
+            implementation("co.touchlab:stately-concurrent-collections:2.1.0")
         }
         commonTest.dependencies {
             implementation(kotlin("test"))
             implementation(deps.jetbrains.kotlinx.coroutines.test)
-            implementation(deps.mockk.common)
         }
         androidUnitTest.dependencies {
             implementation(deps.junit)
