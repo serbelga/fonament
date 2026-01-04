@@ -22,7 +22,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 
 /**
- * Responsible of managing the [FonamentEvent]s and update the [uiState] that is observed
+ * Responsible for managing the [FonamentEvent]s and update the [uiState] that is observed
  * by the [FonamentUI].
  */
 abstract class FonamentViewModel<U : FonamentUIState>(

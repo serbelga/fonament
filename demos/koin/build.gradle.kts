@@ -42,8 +42,8 @@ android {
 }
 
 dependencies {
-    implementation(projects.fonamentDi.koin)
     implementation(projects.fonamentPresentation)
+    implementation(projects.fonamentPresentation.di.koin)
     implementation(projects.fonamentPresentation.samples)
 
     implementation(deps.androidx.activityCompose)
@@ -55,6 +55,10 @@ dependencies {
     implementation(deps.androidx.compose.ui)
     implementation(deps.androidx.compose.uiGraphics)
     implementation(deps.androidx.compose.uiToolingPreview)
+
+    implementation(platform(deps.koin.bom))
+    implementation(deps.koin.core)
+    implementation(deps.koin.composeViewmodel)
 
     implementation(deps.jetbrains.kotlinx.collections.immutable)
 }

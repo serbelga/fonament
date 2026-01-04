@@ -1,8 +1,6 @@
 plugins {
     alias(deps.plugins.android.library)
-    alias(deps.plugins.jetbrains.compose)
     alias(deps.plugins.jetbrains.dokka)
-    alias(deps.plugins.jetbrains.kotlin.composeCompiler)
     alias(deps.plugins.jetbrains.kotlin.multiplatform)
     alias(deps.plugins.sergiobelda.convention.spotless)
     alias(deps.plugins.vanniktech.mavenpublish)
@@ -14,25 +12,25 @@ kotlin {
     iosX64()
     iosArm64()
     iosSimulatorArm64()
-    js(IR) {
-        browser()
-        binaries.executable()
-    }
 
     sourceSets {
         commonMain.dependencies {
-            implementation(deps.jetbrains.compose.foundation)
-            implementation(deps.jetbrains.compose.ui)
-            implementation(deps.androidx.lifecycle.viewmodel)
+            implementation(deps.androidx.datastore.preferences)
+            implementation(deps.touchlab.stately.concurrentCollections)
         }
-        androidMain.dependencies {
-            implementation(deps.androidx.core.ktx)
+        commonTest.dependencies {
+            implementation(kotlin("test"))
+            implementation(deps.jetbrains.kotlinx.coroutines.test)
+        }
+        androidUnitTest.dependencies {
+            implementation(deps.junit)
+            implementation(deps.mockk.mockk)
         }
     }
 }
 
 android {
-    namespace = "dev.sergiobelda.fonament"
+    namespace = "dev.sergiobelda.fonament.preferences"
     compileSdk = deps.versions.android.compileSdk.get().toInt()
 
     defaultConfig {
@@ -45,10 +43,6 @@ android {
     kotlin {
         jvmToolchain(17)
     }
-}
-
-tasks.withType<Jar> {
-    from(file("$rootDir/${projects.fonamentPresentation.name}/samples/src/commonMain/kotlin"))
 }
 
 mavenPublishing {

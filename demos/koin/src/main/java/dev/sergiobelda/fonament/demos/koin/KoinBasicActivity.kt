@@ -20,8 +20,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import dev.sergiobelda.fonament.di.koin.fonamentViewModel
-import dev.sergiobelda.fonament.di.koin.koinFonamentViewModel
+import dev.sergiobelda.fonament.presentation.di.koin.fonamentViewModel
+import dev.sergiobelda.fonament.presentation.di.koin.koinFonamentViewModel
 import dev.sergiobelda.fonament.samples.SampleScreen
 import dev.sergiobelda.fonament.samples.SampleViewModel
 import dev.sergiobelda.fonament.samples.SampleViewModelV2

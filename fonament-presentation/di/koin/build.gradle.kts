@@ -14,16 +14,17 @@ kotlin {
     iosX64()
     iosArm64()
     iosSimulatorArm64()
-    js(IR) {
-        browser()
-        binaries.executable()
-    }
 
     sourceSets {
         commonMain.dependencies {
-            implementation(deps.jetbrains.compose.foundation)
+            api(projects.fonamentPresentation)
+
+            implementation(project.dependencies.platform(deps.koin.bom))
+            implementation(deps.koin.core)
+            implementation(deps.koin.composeViewmodel)
+
+            implementation(deps.jetbrains.androidx.lifecycle.viewmodelCompose)
             implementation(deps.jetbrains.compose.ui)
-            implementation(deps.androidx.lifecycle.viewmodel)
         }
         androidMain.dependencies {
             implementation(deps.androidx.core.ktx)
@@ -32,7 +33,7 @@ kotlin {
 }
 
 android {
-    namespace = "dev.sergiobelda.fonament"
+    namespace = "dev.sergiobelda.fonament.presentation.di.koin"
     compileSdk = deps.versions.android.compileSdk.get().toInt()
 
     defaultConfig {
@@ -47,11 +48,11 @@ android {
     }
 }
 
-tasks.withType<Jar> {
-    from(file("$rootDir/${projects.fonamentPresentation.name}/samples/src/commonMain/kotlin"))
-}
-
 mavenPublishing {
+    coordinates(
+        artifactId = "fonament-presentation-di-koin",
+    )
+
     publishToMavenCentral(true)
 
     signAllPublications()
