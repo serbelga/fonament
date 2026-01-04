@@ -21,6 +21,6 @@ import android.content.Context
 internal actual class DataStoreFilePath(
     context: Context,
 ) {
-    internal actual val root: String =
+    internal actual val platformPath: String =
         context.filesDir.absolutePath
 }

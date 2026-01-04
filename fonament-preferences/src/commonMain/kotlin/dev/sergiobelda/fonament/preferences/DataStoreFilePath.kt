@@ -16,12 +16,18 @@
 
 package dev.sergiobelda.fonament.preferences
 
+/**
+ * Class that represent the path to a preferences DataStore.
+ */
 internal expect class DataStoreFilePath {
-    internal val root: String
+    /**
+     * Returns the platform-specific path to a preferences DataStore.
+     */
+    internal val platformPath: String
 }
 
 private val DataStoreFilePath.directory: String get() =
-    "$root/datastore"
+    "$platformPath/datastore"
 
 /**
  * Returns a string representation of a given [String] as a file name for a preferences DataStore.
