@@ -22,7 +22,7 @@ import platform.Foundation.NSFileManager
 import platform.Foundation.NSURL
 import platform.Foundation.NSUserDomainMask
 
-actual object FonamentPreferencesFactory {
+actual class FonamentPreferencesFactory {
     @OptIn(ExperimentalForeignApi::class)
     actual fun create(
         name: String,

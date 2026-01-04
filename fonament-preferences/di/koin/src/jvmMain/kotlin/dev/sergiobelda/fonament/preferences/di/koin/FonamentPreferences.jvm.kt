@@ -30,7 +30,7 @@ actual fun Module.fonamentPreferences(
     createdAtStart: Boolean,
 ): KoinDefinition<FonamentPreferences> =
     fonamentPreferences(
-        factory = { FonamentPreferencesFactory },
+        factory = { FonamentPreferencesFactory() },
         name = name,
         qualifier = qualifier,
         createdAtStart = createdAtStart,

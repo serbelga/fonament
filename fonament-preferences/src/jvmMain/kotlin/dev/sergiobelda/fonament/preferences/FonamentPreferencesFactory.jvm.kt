@@ -16,7 +16,7 @@
 
 package dev.sergiobelda.fonament.preferences
 
-actual object FonamentPreferencesFactory {
+actual class FonamentPreferencesFactory {
     actual fun create(
         name: String,
     ): FonamentPreferences =

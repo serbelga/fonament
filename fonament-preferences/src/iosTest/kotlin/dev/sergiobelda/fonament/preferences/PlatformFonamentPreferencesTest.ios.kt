@@ -21,7 +21,7 @@ import platform.Foundation.NSFileManager
 
 actual open class PlatformFonamentPreferencesTest actual constructor() {
     internal actual val fonamentPreferencesFactory: FonamentPreferencesFactory =
-        FonamentPreferencesFactory
+        FonamentPreferencesFactory()
 
     internal actual val dataStoreFilePath: DataStoreFilePath = DataStoreFilePath()
 

@@ -20,7 +20,7 @@ import java.io.File
 
 actual open class PlatformFonamentPreferencesTest {
     internal actual val fonamentPreferencesFactory: FonamentPreferencesFactory =
-        FonamentPreferencesFactory
+        FonamentPreferencesFactory()
 
     internal actual val dataStoreFilePath: DataStoreFilePath = DataStoreFilePath()
 
