@@ -16,7 +16,7 @@
 
 @file:Suppress("ktlint:standard:max-line-length")
 
-package dev.sergiobelda.fonament.di.koin
+package dev.sergiobelda.fonament.presentation.di.koin
 
 import dev.sergiobelda.fonament.presentation.ui.FonamentUIState
 import dev.sergiobelda.fonament.presentation.ui.FonamentViewModel

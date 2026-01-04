@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package dev.sergiobelda.fonament.di.koin
+package dev.sergiobelda.fonament.presentation.di.koin
 
 import androidx.compose.runtime.Composable
 import androidx.lifecycle.ViewModelStoreOwner

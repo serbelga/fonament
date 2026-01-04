@@ -10,22 +10,18 @@ plugins {
 
 kotlin {
     androidTarget()
-    jvm("desktop")
+    jvm()
     iosX64()
     iosArm64()
     iosSimulatorArm64()
-    js(IR) {
-        browser()
-        binaries.executable()
-    }
 
     sourceSets {
         commonMain.dependencies {
             api(projects.fonamentPresentation)
 
-            api(project.dependencies.platform(deps.koin.bom))
-            api(deps.koin.core)
-            api(deps.koin.composeViewmodel)
+            implementation(project.dependencies.platform(deps.koin.bom))
+            implementation(deps.koin.core)
+            implementation(deps.koin.composeViewmodel)
 
             implementation(deps.jetbrains.androidx.lifecycle.viewmodelCompose)
             implementation(deps.jetbrains.compose.ui)
@@ -37,7 +33,7 @@ kotlin {
 }
 
 android {
-    namespace = "dev.sergiobelda.fonament.di.koin"
+    namespace = "dev.sergiobelda.fonament.presentation.di.koin"
     compileSdk = deps.versions.android.compileSdk.get().toInt()
 
     defaultConfig {
@@ -54,7 +50,7 @@ android {
 
 mavenPublishing {
     coordinates(
-        artifactId = "fonament-di-koin",
+        artifactId = "fonament-presentation-di-koin",
     )
 
     publishToMavenCentral(true)
