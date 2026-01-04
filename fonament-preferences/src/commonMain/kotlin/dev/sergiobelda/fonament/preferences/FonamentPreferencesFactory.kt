@@ -20,6 +20,11 @@ package dev.sergiobelda.fonament.preferences
  * Factory for creating [FonamentPreferences] instances.
  */
 expect class FonamentPreferencesFactory {
+    /**
+     * Create a [FonamentPreferences] instance given its name.
+     * The name shouldn't contain any path separator or extension,
+     * e.g. "my_app_preferences".
+     */
     fun create(
         name: String = DEFAULT_FONAMENT_PREFERENCES_NAME,
     ): FonamentPreferences
