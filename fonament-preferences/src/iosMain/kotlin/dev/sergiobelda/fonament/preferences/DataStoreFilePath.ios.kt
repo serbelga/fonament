@@ -33,5 +33,5 @@ internal actual class DataStoreFilePath {
             error = null,
         )
 
-    internal actual val root: String = documentDirectory?.path.orEmpty()
+    internal actual val platformPath: String = documentDirectory?.path.orEmpty()
 }

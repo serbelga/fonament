@@ -17,5 +17,5 @@
 package dev.sergiobelda.fonament.preferences
 
 internal actual class DataStoreFilePath {
-    internal actual val root: String = "./"
+    internal actual val platformPath: String = "./"
 }
