@@ -17,8 +17,28 @@
 package dev.sergiobelda.fonament.preferences
 
 import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.core.Preferences
+import okio.Path.Companion.toPath
 
+/**
+ * A class that creates a [DataStore] instance for a given file name as a singleton.
+ */
 expect class FonamentPreferencesDataStoreSingleton {
+    internal val dataStoreFilePath: DataStoreFilePath
+
+    /**
+     * Create a [DataStore] instance for the given [name] or return the existing one.
+     */
     operator fun get(name: String): DataStore<Preferences>
 }
+
+/**
+ * Creates an instance of [DataStore] given its [name].
+ */
+internal fun FonamentPreferencesDataStoreSingleton.createDataStore(
+    name: String,
+): DataStore<Preferences> =
+    PreferenceDataStoreFactory.createWithPath(
+        produceFile = { dataStoreFilePath.path(name).toPath() },
+    )

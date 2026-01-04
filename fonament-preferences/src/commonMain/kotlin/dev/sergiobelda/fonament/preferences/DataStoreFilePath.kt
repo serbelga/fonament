@@ -16,23 +16,18 @@
 
 package dev.sergiobelda.fonament.preferences
 
-import android.content.Context
-import io.mockk.every
-import io.mockk.mockk
-import java.io.File
-
-actual open class PlatformFonamentPreferencesTest {
-    val context: Context =
-        mockk<Context>(relaxed = true).apply {
-            every { filesDir } returns File("build/filesDir")
-        }
-
-    internal actual val fonamentPreferencesFactory: FonamentPreferencesFactory =
-        FonamentPreferencesFactory(context)
-
-    internal actual val dataStoreFilePath: DataStoreFilePath = DataStoreFilePath(context)
-
-    actual fun clearPreferences() {
-        File(dataStoreFilePath.path(TEST_PREFERENCES_NAME)).deleteRecursively()
-    }
+internal expect class DataStoreFilePath {
+    internal val root: String
 }
+
+private val DataStoreFilePath.directory: String get() =
+    "$root/datastore"
+
+/**
+ * Returns a string representation of a given [String] as a file name for a preferences DataStore.
+ */
+private fun String.dataStoreFileName(): String =
+    "$this.preferences_pb"
+
+internal fun DataStoreFilePath.path(name: String): String =
+    directory + "/" + name.dataStoreFileName()

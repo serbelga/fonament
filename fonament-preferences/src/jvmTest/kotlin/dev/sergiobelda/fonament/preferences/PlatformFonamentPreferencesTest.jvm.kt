@@ -19,14 +19,12 @@ package dev.sergiobelda.fonament.preferences
 import java.io.File
 
 actual open class PlatformFonamentPreferencesTest {
-    actual var factory: FonamentPreferencesFactory = FonamentPreferencesFactory
+    internal actual val fonamentPreferencesFactory: FonamentPreferencesFactory =
+        FonamentPreferencesFactory
 
-    actual fun setUp() = Unit
+    internal actual val dataStoreFilePath: DataStoreFilePath = DataStoreFilePath()
 
-    actual fun clearPreferences(fileName: String) {
-        val file = File("./$fileName")
-        if (file.exists()) {
-            file.delete()
-        }
+    actual fun clearPreferences() {
+        File(dataStoreFilePath.path(TEST_PREFERENCES_NAME)).deleteRecursively()
     }
 }

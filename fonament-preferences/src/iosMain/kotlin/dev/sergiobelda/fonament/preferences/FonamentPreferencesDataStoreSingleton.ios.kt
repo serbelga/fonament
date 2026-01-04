@@ -21,42 +21,27 @@ import androidx.datastore.preferences.core.Preferences
 import co.touchlab.stately.collections.ConcurrentMutableMap
 import co.touchlab.stately.concurrency.Lock
 import co.touchlab.stately.concurrency.withLock
-import kotlinx.cinterop.ExperimentalForeignApi
-import platform.Foundation.NSDocumentDirectory
-import platform.Foundation.NSFileManager
-import platform.Foundation.NSURL
-import platform.Foundation.NSUserDomainMask
 
 actual class FonamentPreferencesDataStoreSingleton {
-    companion object {
-        private val lock = Lock()
-
-        private val cache: ConcurrentMutableMap<String, DataStore<Preferences>> =
-            ConcurrentMutableMap()
-    }
-
-    @OptIn(ExperimentalForeignApi::class)
-    private val documentDirectory: NSURL? =
-        NSFileManager.defaultManager.URLForDirectory(
-            directory = NSDocumentDirectory,
-            inDomain = NSUserDomainMask,
-            appropriateForURL = null,
-            create = false,
-            error = null,
-        )
+    internal actual val dataStoreFilePath: DataStoreFilePath =
+        DataStoreFilePath()
 
     actual operator fun get(name: String): DataStore<Preferences> =
         lock.withLock {
             cache[name] ?: run {
                 val instance =
                     createDataStore(
-                        producePath = {
-                            documentDirectory?.path.orEmpty() +
-                                "/${name.toPreferencesDataStoreFileName()}"
-                        },
+                        name = name,
                     )
                 cache[name] = instance
                 instance
             }
         }
+
+    companion object {
+        private val lock = Lock()
+
+        private val cache: ConcurrentMutableMap<String, DataStore<Preferences>> =
+            ConcurrentMutableMap()
+    }
 }
