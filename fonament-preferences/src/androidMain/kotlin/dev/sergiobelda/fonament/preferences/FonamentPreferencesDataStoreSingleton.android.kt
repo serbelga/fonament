@@ -22,28 +22,27 @@ import androidx.datastore.preferences.core.Preferences
 import java.util.concurrent.ConcurrentHashMap
 
 actual class FonamentPreferencesDataStoreSingleton(
-    val context: Context,
+    context: Context,
 ) {
-    companion object {
-        private val lock = Any()
-
-        private val cache: ConcurrentHashMap<String, DataStore<Preferences>> =
-            ConcurrentHashMap()
-    }
+    internal actual val dataStoreFilePath: DataStoreFilePath =
+        DataStoreFilePath(context)
 
     actual operator fun get(name: String): DataStore<Preferences> =
         synchronized(lock) {
             cache[name] ?: run {
                 val instance =
                     createDataStore(
-                        producePath = {
-                            context.filesDir.resolve(
-                                name.toPreferencesDataStoreFileName(),
-                            ).absolutePath
-                        },
+                        name = name,
                     )
                 cache[name] = instance
                 instance
             }
         }
+
+    companion object {
+        private val lock = Any()
+
+        private val cache: ConcurrentHashMap<String, DataStore<Preferences>> =
+            ConcurrentHashMap()
+    }
 }

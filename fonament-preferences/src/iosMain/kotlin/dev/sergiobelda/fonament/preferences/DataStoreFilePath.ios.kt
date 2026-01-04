@@ -17,17 +17,21 @@
 package dev.sergiobelda.fonament.preferences
 
 import kotlinx.cinterop.ExperimentalForeignApi
+import platform.Foundation.NSDocumentDirectory
 import platform.Foundation.NSFileManager
+import platform.Foundation.NSURL
+import platform.Foundation.NSUserDomainMask
 
-actual open class PlatformFonamentPreferencesTest actual constructor() {
-    internal actual val fonamentPreferencesFactory: FonamentPreferencesFactory =
-        FonamentPreferencesFactory
-
-    internal actual val dataStoreFilePath: DataStoreFilePath = DataStoreFilePath()
-
+internal actual class DataStoreFilePath {
     @OptIn(ExperimentalForeignApi::class)
-    actual fun clearPreferences() {
-        val manager = NSFileManager.defaultManager
-        manager.removeItemAtPath(dataStoreFilePath.path(TEST_PREFERENCES_NAME), null)
-    }
+    private val documentDirectory: NSURL? =
+        NSFileManager.defaultManager.URLForDirectory(
+            directory = NSDocumentDirectory,
+            inDomain = NSUserDomainMask,
+            appropriateForURL = null,
+            create = false,
+            error = null,
+        )
+
+    internal actual val root: String = documentDirectory?.path.orEmpty()
 }

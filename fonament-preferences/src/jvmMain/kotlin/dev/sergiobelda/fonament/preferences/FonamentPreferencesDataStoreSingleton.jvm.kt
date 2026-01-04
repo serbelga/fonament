@@ -28,14 +28,15 @@ actual class FonamentPreferencesDataStoreSingleton {
             ConcurrentHashMap()
     }
 
+    internal actual val dataStoreFilePath: DataStoreFilePath =
+        DataStoreFilePath()
+
     actual operator fun get(name: String): DataStore<Preferences> =
         synchronized(lock) {
             cache[name] ?: run {
                 val instance =
                     createDataStore(
-                        producePath = {
-                            "./${name.toPreferencesDataStoreFileName()}"
-                        },
+                        name = name,
                     )
                 cache[name] = instance
                 instance

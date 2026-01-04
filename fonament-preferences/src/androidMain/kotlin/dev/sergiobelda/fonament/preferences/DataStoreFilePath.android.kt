@@ -16,14 +16,11 @@
 
 package dev.sergiobelda.fonament.preferences
 
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.PreferenceDataStoreFactory
-import androidx.datastore.preferences.core.Preferences
-import okio.Path.Companion.toPath
+import android.content.Context
 
-internal fun createDataStore(
-    producePath: () -> String,
-): DataStore<Preferences> =
-    PreferenceDataStoreFactory.createWithPath(
-        produceFile = { producePath.invoke().toPath() },
-    )
+internal actual class DataStoreFilePath(
+    context: Context,
+) {
+    internal actual val root: String =
+        context.filesDir.absolutePath
+}

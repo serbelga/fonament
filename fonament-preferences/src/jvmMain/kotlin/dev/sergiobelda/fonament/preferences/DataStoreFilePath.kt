@@ -16,5 +16,6 @@
 
 package dev.sergiobelda.fonament.preferences
 
-internal fun String.toPreferencesDataStoreFileName(): String =
-    "$this.preferences_pb"
+internal actual class DataStoreFilePath {
+    internal actual val root: String = "./"
+}

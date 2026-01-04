@@ -17,9 +17,11 @@
 package dev.sergiobelda.fonament.preferences
 
 expect open class PlatformFonamentPreferencesTest() {
-    var factory: FonamentPreferencesFactory
+    internal val fonamentPreferencesFactory: FonamentPreferencesFactory
 
-    fun setUp()
+    internal val dataStoreFilePath: DataStoreFilePath
 
-    fun clearPreferences(fileName: String)
+    fun clearPreferences()
 }
+
+internal const val TEST_PREFERENCES_NAME = "test"

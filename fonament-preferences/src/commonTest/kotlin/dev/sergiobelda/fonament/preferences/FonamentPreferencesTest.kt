@@ -16,27 +16,21 @@
 
 package dev.sergiobelda.fonament.preferences
 
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.test.runTest
 import kotlin.test.AfterTest
-import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertNull
 
 class FonamentPreferencesTest : PlatformFonamentPreferencesTest() {
     val fonamentPreferences: FonamentPreferences =
-        factory.create(
-            TEST_PREFERENCES_NAME,
-        )
-
-    @BeforeTest
-    fun before() {
-        setUp()
-    }
+        fonamentPreferencesFactory.create(TEST_PREFERENCES_NAME)
 
     @AfterTest
     fun after() {
-        clearPreferences(TEST_PREFERENCES_NAME.toPreferencesDataStoreFileName())
+        clearPreferences()
     }
 
     @Test
@@ -94,6 +88,34 @@ class FonamentPreferencesTest : PlatformFonamentPreferencesTest() {
             val result = fonamentPreferences.getStringSet("test_string_set").firstOrNull()
             assertEquals(setOf("test", "a"), result)
         }
-}
 
-private const val TEST_PREFERENCES_NAME = "test"
+    @Test
+    fun `test getDoubleOrDefault`() =
+        runTest {
+            assertNull(fonamentPreferences.getDouble("test_double").firstOrNull())
+            assertEquals(
+                123.4,
+                fonamentPreferences.getDoubleOrDefault("test_double", 123.4).first(),
+            )
+        }
+
+    @Test
+    fun `test getStringOrDefault`() =
+        runTest {
+            assertNull(fonamentPreferences.getString("test_string").firstOrNull())
+            assertEquals(
+                "any",
+                fonamentPreferences.getStringOrDefault("test_string", "any").first(),
+            )
+        }
+
+    @Test
+    fun `test getBooleanOrDefault`() =
+        runTest {
+            assertNull(fonamentPreferences.getBoolean("test_boolean").firstOrNull())
+            assertEquals(
+                false,
+                fonamentPreferences.getBooleanOrDefault("test_boolean", false).first(),
+            )
+        }
+}
