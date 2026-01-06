@@ -61,3 +61,9 @@ mavenPublishing {
 
     signAllPublications()
 }
+
+dokka {
+    dokkaPublications.html {
+        moduleName.set("fonament-presentation-di-koin")
+    }
+}

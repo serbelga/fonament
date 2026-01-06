@@ -51,3 +51,9 @@ mavenPublishing {
 
     signAllPublications()
 }
+
+dokka {
+    dokkaPublications.html {
+        moduleName.set("fonament-preferences-di-koin")
+    }
+}
