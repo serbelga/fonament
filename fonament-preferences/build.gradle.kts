@@ -1,5 +1,7 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
-    alias(deps.plugins.android.library)
+    alias(deps.plugins.android.kotlinMultiplatformLibrary)
     alias(deps.plugins.jetbrains.dokka)
     alias(deps.plugins.jetbrains.kotlin.multiplatform)
     alias(deps.plugins.sergiobelda.convention.spotless)
@@ -7,7 +9,15 @@ plugins {
 }
 
 kotlin {
-    androidTarget()
+    androidLibrary {
+        namespace = "dev.sergiobelda.fonament.preferences"
+        compileSdk = deps.versions.android.compileSdk.get().toInt()
+        minSdk = deps.versions.android.minSdk.get().toInt()
+
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_17)
+        }
+    }
     jvm()
     iosX64()
     iosArm64()
@@ -26,22 +36,6 @@ kotlin {
             implementation(deps.junit)
             implementation(deps.mockk.mockk)
         }
-    }
-}
-
-android {
-    namespace = "dev.sergiobelda.fonament.preferences"
-    compileSdk = deps.versions.android.compileSdk.get().toInt()
-
-    defaultConfig {
-        minSdk = deps.versions.android.minSdk.get().toInt()
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles("consumer-rules.pro")
-    }
-
-    kotlin {
-        jvmToolchain(17)
     }
 }
 
