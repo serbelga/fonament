@@ -19,3 +19,5 @@ dependencies {
     dokka(projects.fonamentPresentation)
     dokka(projects.fonamentPresentation.di.koin)
 }
+
+apply(from = "./gradle/scripts/git/git-hooks.gradle.kts")
