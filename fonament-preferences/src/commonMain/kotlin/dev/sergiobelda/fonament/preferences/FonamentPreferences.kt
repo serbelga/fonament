@@ -30,9 +30,15 @@ import androidx.datastore.preferences.core.stringSetPreferencesKey
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
+/**
+ * A class that provides functions to set and get data from a [DataStore]<[Preferences]> instance.
+ */
 class FonamentPreferences(
     private val dataStore: DataStore<Preferences>,
 ) {
+    /**
+     * Sets an [Int] [value] in the data store preferences.
+     */
     suspend operator fun set(
         key: String,
         value: Int,
@@ -40,6 +46,9 @@ class FonamentPreferences(
         set(intPreferencesKey(key), value)
     }
 
+    /**
+     * Sets a [Double] [value] in the data store preferences.
+     */
     suspend operator fun set(
         key: String,
         value: Double,
@@ -47,6 +56,9 @@ class FonamentPreferences(
         set(doublePreferencesKey(key), value)
     }
 
+    /**
+     * Sets a [String] [value] in the data store preferences.
+     */
     suspend operator fun set(
         key: String,
         value: String,
@@ -54,6 +66,9 @@ class FonamentPreferences(
         set(stringPreferencesKey(key), value)
     }
 
+    /**
+     * Sets a [Boolean] [value] in the data store preferences.
+     */
     suspend operator fun set(
         key: String,
         value: Boolean,
@@ -61,6 +76,9 @@ class FonamentPreferences(
         set(booleanPreferencesKey(key), value)
     }
 
+    /**
+     * Sets a [Float] [value] in the data store preferences.
+     */
     suspend operator fun set(
         key: String,
         value: Float,
@@ -68,6 +86,9 @@ class FonamentPreferences(
         set(floatPreferencesKey(key), value)
     }
 
+    /**
+     * Sets a [Long] [value] in the data store preferences.
+     */
     suspend operator fun set(
         key: String,
         value: Long,
@@ -75,6 +96,9 @@ class FonamentPreferences(
         set(longPreferencesKey(key), value)
     }
 
+    /**
+     * Sets a [Set]<[String]> [value] in the data store preferences.
+     */
     suspend operator fun set(
         key: String,
         value: Set<String>,
@@ -82,6 +106,9 @@ class FonamentPreferences(
         set(stringSetPreferencesKey(key), value)
     }
 
+    /**
+     * Sets a [ByteArray] [value] in the data store preferences.
+     */
     suspend operator fun set(
         key: String,
         value: ByteArray,
@@ -98,72 +125,136 @@ class FonamentPreferences(
         }
     }
 
+    /**
+     * Retrieves a [Flow] containing the value from the data store preferences given its [key],
+     * or null otherwise.
+     */
     fun getInt(key: String): Flow<Int?> =
         get(intPreferencesKey(key))
 
+    /**
+     * Retrieves a [Flow] containing the value from the data store preferences given its [key],
+     * or [default] otherwise.
+     */
     fun getIntOrDefault(
         key: String,
         default: Int,
     ): Flow<Int> =
         getOrDefault(intPreferencesKey(key), default)
 
+    /**
+     * Retrieves a [Flow] containing the value from the data store preferences given its [key],
+     * or null otherwise.
+     */
     fun getDouble(key: String): Flow<Double?> =
         get(doublePreferencesKey(key))
 
+    /**
+     * Retrieves a [Flow] containing the value from the data store preferences given its [key],
+     * or [default] otherwise.
+     */
     fun getDoubleOrDefault(
         key: String,
         default: Double,
     ): Flow<Double> =
         getOrDefault(doublePreferencesKey(key), default)
 
+    /**
+     * Retrieves a [Flow] containing the value from the data store preferences given its [key],
+     * or null otherwise.
+     */
     fun getString(key: String): Flow<String?> =
         get(stringPreferencesKey(key))
 
+    /**
+     * Retrieves a [Flow] containing the value from the data store preferences given its [key],
+     * or [default] otherwise.
+     */
     fun getStringOrDefault(
         key: String,
         default: String,
     ): Flow<String> =
         getOrDefault(stringPreferencesKey(key), default)
 
+    /**
+     * Retrieves a [Flow] containing the value from the data store preferences given its [key],
+     * or null otherwise.
+     */
     fun getBoolean(key: String): Flow<Boolean?> =
         get(booleanPreferencesKey(key))
 
+    /**
+     * Retrieves a [Flow] containing the value from the data store preferences given its [key],
+     * or [default] otherwise.
+     */
     fun getBooleanOrDefault(
         key: String,
         default: Boolean,
     ): Flow<Boolean> =
         getOrDefault(booleanPreferencesKey(key), default)
 
+    /**
+     * Retrieves a [Flow] containing the value from the data store preferences given its [key],
+     * or null otherwise.
+     */
     fun getFloat(key: String): Flow<Float?> =
         get(floatPreferencesKey(key))
 
+    /**
+     * Retrieves a [Flow] containing the value from the data store preferences given its [key],
+     * or [default] otherwise.
+     */
     fun getFloatOrDefault(
         key: String,
         default: Float,
     ): Flow<Float> =
         getOrDefault(floatPreferencesKey(key), default)
 
+    /**
+     * Retrieves a [Flow] containing the value from the data store preferences given its [key],
+     * or null otherwise.
+     */
     fun getLong(key: String): Flow<Long?> =
         get(longPreferencesKey(key))
 
+    /**
+     * Retrieves a [Flow] containing the value from the data store preferences given its [key],
+     * or [default] otherwise.
+     */
     fun getLongOrDefault(
         key: String,
         default: Long,
     ): Flow<Long> =
         getOrDefault(longPreferencesKey(key), default)
 
+    /**
+     * Retrieves a [Flow] containing the value from the data store preferences given its [key],
+     * or null otherwise.
+     */
     fun getStringSet(key: String): Flow<Set<String>?> =
         get(stringSetPreferencesKey(key))
 
+    /**
+     * Retrieves a [Flow] containing the value from the data store preferences given its [key],
+     * or [default] otherwise.
+     */
     fun getStringSetOrDefault(
         key: String,
         default: Set<String>,
     ): Flow<Set<String>> =
         getOrDefault(stringSetPreferencesKey(key), default)
 
+    /**
+     * Retrieves a [Flow] containing the value from the data store preferences given its [key],
+     * or null otherwise.
+     */
     fun getByteArray(key: String): Flow<ByteArray?> =
         get(byteArrayPreferencesKey(key))
 
+    /**
+     * Retrieves a [Flow] containing the value from the data store preferences given its [key],
+     * or [default] otherwise.
+     */
     fun getByteArrayOrDefault(
         key: String,
         default: ByteArray,
