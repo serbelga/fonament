@@ -12,6 +12,7 @@ docs_dir: docs
 
 nav:
   - 'Overview': 'index.md'
+  - 'Fonament Preferences': 'fonament-preferences.md'
   - 'Fonament Presentation': 'fonament-presentation.md'
   - 'API Reference': api/
 
@@ -34,14 +35,16 @@ theme:
     logo: material/widgets
   font:
     text: 'Manrope'
-    code: 'JetBrains Mono'
+    code: 'Google Sans Code'
   features:
     - content.code.annotate
     - content.code.copy
     - content.code.select
 
 markdown_extensions:
+  - attr_list
   - admonition
+  - footnotes
   - pymdownx.details
   - pymdownx.superfences
   - pymdownx.highlight:
@@ -54,3 +57,6 @@ markdown_extensions:
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+extra_css:
+  - stylesheets/extra.css
