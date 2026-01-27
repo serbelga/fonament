@@ -23,7 +23,7 @@ import androidx.compose.ui.Modifier
 /**
  * Defines the content of some UI Node.
  *
- * @sample dev.sergiobelda.fonament.samples.SampleContent
+ * @sample dev.sergiobelda.fonament.samples.SampleContentPreview
  */
 abstract class FonamentContent<U : FonamentUIState, C : FonamentContentState> {
     private lateinit var eventHandler: FonamentEventHandler
