@@ -36,10 +36,8 @@ kotlin {
             implementation(deps.jetbrains.compose.material3)
             implementation(deps.jetbrains.compose.materialIconsExtended)
             implementation(deps.jetbrains.compose.ui)
-            implementation(deps.jetbrains.kotlinx.collections.immutable)
-
             implementation(deps.jetbrains.compose.uiToolingPreview)
-            implementation(deps.jetbrains.compose.uiTooling)
+            implementation(deps.jetbrains.kotlinx.collections.immutable)
         }
         androidMain.dependencies {
             implementation(deps.androidx.core.ktx)

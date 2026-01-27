@@ -17,6 +17,10 @@ kotlin {
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_17)
         }
+
+        withHostTest {
+            isIncludeAndroidResources = true
+        }
     }
     jvm()
     iosX64()
@@ -32,9 +36,11 @@ kotlin {
             implementation(kotlin("test"))
             implementation(deps.jetbrains.kotlinx.coroutines.test)
         }
-        androidUnitTest.dependencies {
-            implementation(deps.junit)
-            implementation(deps.mockk.mockk)
+        getByName("androidHostTest") {
+            dependencies {
+                implementation(deps.junit)
+                implementation(deps.mockk.mockk)
+            }
         }
     }
 }

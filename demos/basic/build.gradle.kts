@@ -1,6 +1,5 @@
 plugins {
     alias(deps.plugins.android.application)
-    alias(deps.plugins.jetbrains.kotlin.android)
     alias(deps.plugins.jetbrains.kotlin.composeCompiler)
     alias(deps.plugins.sergiobelda.convention.spotless)
 }
