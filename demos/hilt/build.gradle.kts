@@ -63,5 +63,5 @@ dependencies {
 
     // Workaround for https://github.com/google/dagger/issues/5059
     // TODO: Remove this line
-    ksp("org.jetbrains.kotlin:kotlin-metadata-jvm:2.3.0")
+    ksp("org.jetbrains.kotlin:kotlin-metadata-jvm:2.3.10")
 }
