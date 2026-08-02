@@ -36,8 +36,8 @@ android {
 }
 
 dependencies {
-    implementation(projects.fonamentPresentation)
-    implementation(projects.fonamentPresentation.samples)
+    implementation(projects.fonamentPresentation.presentation)
+    implementation(projects.fonamentPresentation.presentation.samples)
 
     implementation(deps.androidx.activityCompose)
     implementation(deps.androidx.core.ktx)

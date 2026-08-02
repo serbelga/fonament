@@ -12,10 +12,10 @@ plugins {
 }
 
 dependencies {
-    dokka(projects.fonamentPreferences)
-    dokka(projects.fonamentPreferences.di.koin)
-    dokka(projects.fonamentPresentation)
-    dokka(projects.fonamentPresentation.di.koin)
+    dokka(projects.fonamentPreferences.preferences)
+    dokka(projects.fonamentPreferences.preferencesDi.koin)
+    dokka(projects.fonamentPresentation.presentation)
+    dokka(projects.fonamentPresentation.presentationDi.koin)
 }
 
 apply(from = "./gradle/scripts/git/git-hooks.gradle.kts")

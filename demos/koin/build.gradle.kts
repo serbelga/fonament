@@ -41,9 +41,9 @@ android {
 }
 
 dependencies {
-    implementation(projects.fonamentPresentation)
-    implementation(projects.fonamentPresentation.di.koin)
-    implementation(projects.fonamentPresentation.samples)
+    implementation(projects.fonamentPresentation.presentation)
+    implementation(projects.fonamentPresentation.presentation.samples)
+    implementation(projects.fonamentPresentation.presentationDi.koin)
 
     implementation(deps.androidx.activityCompose)
     implementation(deps.androidx.core.ktx)

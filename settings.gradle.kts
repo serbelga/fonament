@@ -26,11 +26,13 @@ dependencyResolutionManagement {
 
 rootProject.name = "fonament-root"
 
-include(":fonament-preferences")
-include(":fonament-preferences:di:koin")
-include(":fonament-presentation")
-include(":fonament-presentation:di:koin")
-include(":fonament-presentation:samples")
+include(":fonament-preferences:preferences")
+include(":fonament-preferences:preferences-di:koin")
+
+include(":fonament-presentation:presentation")
+include(":fonament-presentation:presentation:samples")
+
+include(":fonament-presentation:presentation-di:koin")
 
 include(":demos:basic")
 include(":demos:hilt")
