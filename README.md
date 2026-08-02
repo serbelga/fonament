@@ -1,6 +1,6 @@
 # Fonament
 
-[![Maven Central](https://img.shields.io/maven-central/v/dev.sergiobelda.fonament/fonament)](https://search.maven.org/search?q=g:dev.sergiobelda.fonament)
+![Maven Central Version](https://img.shields.io/maven-central/v/dev.sergiobelda.fonament/presentation)
 
 Fonament is a base library that offers a collection of elements to build an application.
 
