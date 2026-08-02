@@ -9,7 +9,7 @@ plugins {
 }
 
 kotlin {
-    androidLibrary {
+    android {
         namespace = "dev.sergiobelda.fonament.preferences"
         compileSdk = deps.versions.android.compileSdk.get().toInt()
         minSdk = deps.versions.android.minSdk.get().toInt()

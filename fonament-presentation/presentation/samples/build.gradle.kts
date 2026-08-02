@@ -3,16 +3,14 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
     alias(deps.plugins.android.kotlinMultiplatformLibrary)
     alias(deps.plugins.jetbrains.compose)
-    alias(deps.plugins.jetbrains.dokka)
     alias(deps.plugins.jetbrains.kotlin.composeCompiler)
     alias(deps.plugins.jetbrains.kotlin.multiplatform)
     alias(deps.plugins.sergiobelda.convention.spotless)
-    alias(deps.plugins.vanniktech.mavenpublish)
 }
 
 kotlin {
-    androidLibrary {
-        namespace = "dev.sergiobelda.fonament"
+    android {
+        namespace = "dev.sergiobelda.fonament.samples"
         compileSdk = deps.versions.android.compileSdk.get().toInt()
         minSdk = deps.versions.android.minSdk.get().toInt()
 
@@ -30,9 +28,15 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
+            implementation(projects.fonamentPresentation.presentation)
+
+            implementation(deps.jetbrains.androidx.lifecycle.viewmodelCompose)
             implementation(deps.jetbrains.compose.foundation)
+            implementation(deps.jetbrains.compose.material3)
+            implementation(deps.jetbrains.compose.materialIconsExtended)
             implementation(deps.jetbrains.compose.ui)
-            implementation(deps.androidx.lifecycle.viewmodel)
+            implementation(deps.jetbrains.compose.uiToolingPreview)
+            implementation(deps.jetbrains.kotlinx.collections.immutable)
         }
         androidMain.dependencies {
             implementation(deps.androidx.core.ktx)
@@ -40,12 +44,6 @@ kotlin {
     }
 }
 
-tasks.withType<Jar> {
-    from(file("$rootDir/${projects.fonamentPresentation.name}/samples/src/commonMain/kotlin"))
-}
-
-mavenPublishing {
-    publishToMavenCentral(true)
-
-    signAllPublications()
+dependencies {
+    androidRuntimeClasspath(deps.jetbrains.compose.uiTooling)
 }
