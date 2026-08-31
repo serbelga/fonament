@@ -45,7 +45,17 @@ tasks.withType<Jar> {
 }
 
 mavenPublishing {
+    coordinates(
+        artifactId = "fonament-presentation",
+    )
+
     publishToMavenCentral(true)
 
     signAllPublications()
+}
+
+dokka {
+    dokkaPublications.html {
+        moduleName.set("fonament-presentation")
+    }
 }

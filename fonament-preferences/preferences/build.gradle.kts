@@ -45,7 +45,17 @@ kotlin {
 }
 
 mavenPublishing {
+    coordinates(
+        artifactId = "fonament-preferences",
+    )
+
     publishToMavenCentral(true)
 
     signAllPublications()
+}
+
+dokka {
+    dokkaPublications.html {
+        moduleName.set("fonament-preferences")
+    }
 }
